@@ -267,7 +267,7 @@
         }
         
         .dark .form-label {
-            color: #d1d5db;
+            color: white;
         }
         
         .section-header {
@@ -518,6 +518,19 @@
         .dark {
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
         }
+
+        /* Dark mode text fixes */
+        .dark .text-gray-600 {
+            color: white !important;
+        }
+        
+        .dark .text-gray-700 {
+            color: white !important;
+        }
+        
+        .dark .text-gray-800 {
+            color: white !important;
+        }
         
         @media print {
             .form-step {
@@ -580,14 +593,14 @@
             <div class="flex justify-between items-center mb-6">
                 <div>
                     <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200">Application Progress</h3>
-                    <p class="text-sm text-gray-600 dark:text-gray-400">Step <span id="current-step" class="font-medium text-indigo-600 dark:text-indigo-400">1</span> of 9</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Step <span id="current-step" class="font-medium text-indigo-600 dark:text-indigo-400">1</span> of 5</p>
                 </div>
                 <div class="text-right">
                     <p class="text-sm text-gray-600 dark:text-gray-400">Completion</p>
-                    <p class="text-lg font-bold text-indigo-600 dark:text-indigo-400"><span id="progress-percentage">11</span>%</p>
+                    <p class="text-lg font-bold text-indigo-600 dark:text-indigo-400"><span id="progress-percentage">20</span>%</p>
                 </div>
             </div>
-            <div class="progress-bar" style="--progress: 11.11%;"></div>
+            <div class="progress-bar" style="--progress: 20%;"></div>
             
             <!-- Enhanced Step Indicators with Animation -->
             <div class="flex justify-between mt-8">
@@ -596,10 +609,6 @@
                 <div class="step-indicator w-12 h-12 rounded-full flex items-center justify-center font-semibold text-sm" style="animation-delay: 0.3s">3</div>
                 <div class="step-indicator w-12 h-12 rounded-full flex items-center justify-center font-semibold text-sm" style="animation-delay: 0.4s">4</div>
                 <div class="step-indicator w-12 h-12 rounded-full flex items-center justify-center font-semibold text-sm" style="animation-delay: 0.5s">5</div>
-                <div class="step-indicator w-12 h-12 rounded-full flex items-center justify-center font-semibold text-sm" style="animation-delay: 0.6s">6</div>
-                <div class="step-indicator w-12 h-12 rounded-full flex items-center justify-center font-semibold text-sm" style="animation-delay: 0.7s">7</div>
-                <div class="step-indicator w-12 h-12 rounded-full flex items-center justify-center font-semibold text-sm" style="animation-delay: 0.8s">8</div>
-                <div class="step-indicator w-12 h-12 rounded-full flex items-center justify-center font-semibold text-sm" style="animation-delay: 0.9s">9</div>
             </div>
         </div>
     </div>
@@ -609,7 +618,7 @@
         <div class="form-container p-10">
             <form id="applicationForm">
                 
-                <!-- Step 1: Student Information -->
+                <!-- Step 1: Student & Address Information -->
                 <div class="form-step active step-content" id="step-1">
                     <div class="section-header">
                         <div class="flex items-center mb-4">
@@ -617,120 +626,110 @@
                                 <i class="fas fa-user text-indigo-600 dark:text-indigo-400 text-lg"></i>
                             </div>
                             <div>
-                                <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-200">Student Information</h2>
-                                <p class="text-gray-600 dark:text-gray-400 mt-1">Tell us about the student applying for admission</p>
+                                <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-200">Student & Address Information</h2>
+                                <p class="text-gray-600 dark:text-white mt-1">Tell us about the student and their address</p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="grid-responsive">
-                        <div>
-                            <label class="form-label block">First Name *</label>
-                            <input type="text" id="firstName" name="firstName" required class="form-input w-full" placeholder="Enter first name">
+                    <!-- Student Information -->
+                    <div class="card mb-8">
+                        <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-6 flex items-center">
+                            <i class="fas fa-user text-indigo-500 mr-3"></i>
+                            Student Details
+                        </h3>
+                        <div class="grid-responsive">
+                            <div>
+                                <label class="form-label block">First Name *</label>
+                                <input type="text" id="firstName" name="firstName" required class="form-input w-full" placeholder="Enter first name">
+                            </div>
+                            <div>
+                                <label class="form-label block">Middle Name</label>
+                                <input type="text" id="middleName" name="middleName" class="form-input w-full" placeholder="Enter middle name (optional)">
+                            </div>
+                            <div>
+                                <label class="form-label block">Last Name *</label>
+                                <input type="text" id="lastName" name="lastName" required class="form-input w-full" placeholder="Enter last name">
+                            </div>
+                            <div>
+                                <label class="form-label block">Date of Birth *</label>
+                                <input type="date" id="dateOfBirth" name="dateOfBirth" required class="form-input w-full">
+                            </div>
+                            <div>
+                                <label class="form-label block">Gender *</label>
+                                <select id="gender" name="gender" required class="form-input w-full">
+                                    <option value="">Select Gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="form-label block">Nationality *</label>
+                                <select id="nationality" name="nationality" required class="form-input w-full">
+                                    <option value="">Select Nationality</option>
+                                    <option value="Kenyan">Kenyan</option>
+                                    <option value="Tanzanian">Tanzanian</option>
+                                    <option value="Ugandan">Ugandan</option>
+                                    <option value="Ethiopian">Ethiopian</option>
+                                    <option value="Somali">Somali</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="form-label block">Religion</label>
+                                <select id="religion" name="religion" class="form-input w-full">
+                                    <option value="">Select Religion</option>
+                                    <option value="Christianity">Christianity</option>
+                                    <option value="Islam">Islam</option>
+                                    <option value="Hinduism">Hinduism</option>
+                                    <option value="Buddhism">Buddhism</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
                         </div>
-                        <div>
-                            <label class="form-label block">Middle Name</label>
-                            <input type="text" id="middleName" name="middleName" class="form-input w-full" placeholder="Enter middle name (optional)">
-                        </div>
-                        <div>
-                            <label class="form-label block">Last Name *</label>
-                            <input type="text" id="lastName" name="lastName" required class="form-input w-full" placeholder="Enter last name">
-                        </div>
-                        <div>
-                            <label class="form-label block">Date of Birth *</label>
-                            <input type="date" id="dateOfBirth" name="dateOfBirth" required class="form-input w-full">
-                        </div>
-                        <div>
-                            <label class="form-label block">Gender *</label>
-                            <select id="gender" name="gender" required class="form-input w-full">
-                                <option value="">Select Gender</option>
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="form-label block">Nationality *</label>
-                            <select id="nationality" name="nationality" required class="form-input w-full">
-                                <option value="">Select Nationality</option>
-                                <option value="Kenyan">Kenyan</option>
-                                <option value="Tanzanian">Tanzanian</option>
-                                <option value="Ugandan">Ugandan</option>
-                                <option value="Ethiopian">Ethiopian</option>
-                                <option value="Somali">Somali</option>
-                                <option value="Other">Other</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="form-label block">Religion</label>
-                            <select id="religion" name="religion" class="form-input w-full">
-                                <option value="">Select Religion</option>
-                                <option value="Christianity">Christianity</option>
-                                <option value="Islam">Islam</option>
-                                <option value="Hinduism">Hinduism</option>
-                                <option value="Buddhism">Buddhism</option>
-                                <option value="Other">Other</option>
-                            </select>
+                    </div>
+
+                    <!-- Address Information -->
+                    <div class="card">
+                        <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-6 flex items-center">
+                            <i class="fas fa-home text-green-500 mr-3"></i>
+                            Address Details
+                        </h3>
+                        <div class="space-y-6">
+                            <div>
+                                <label class="form-label block">Home Address *</label>
+                                <input type="text" id="homeAddress" name="homeAddress" required class="form-input w-full" placeholder="Enter complete home address">
+                            </div>
+                            <div class="grid-responsive">
+                                <div>
+                                    <label class="form-label block">City *</label>
+                                    <input type="text" id="city" name="city" required class="form-input w-full" placeholder="Enter city">
+                                </div>
+                                <div>
+                                    <label class="form-label block">County *</label>
+                                    <input type="text" id="county" name="county" required class="form-input w-full" placeholder="Enter county">
+                                </div>
+                                <div>
+                                    <label class="form-label block">Postal Code</label>
+                                    <input type="text" id="postalCode" name="postalCode" class="form-input w-full" placeholder="Enter postal code">
+                                </div>
+                                <div>
+                                    <label class="form-label block">Country</label>
+                                    <input type="text" id="country" name="country" class="form-input w-full" value="Kenya" readonly>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="mt-12 flex justify-end">
                         <button type="button" onclick="nextStep()" class="btn-primary px-8 py-4 text-white rounded-full font-semibold text-lg">
-                            Continue to Address <i class="fas fa-arrow-right ml-3"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Step 2: Address Information -->
-                <div class="form-step step-content" id="step-2">
-                    <div class="section-header">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900 rounded-full flex items-center justify-center mr-4">
-                                <i class="fas fa-home text-indigo-600 dark:text-indigo-400 text-lg"></i>
-                            </div>
-                            <div>
-                                <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-200">Address Information</h2>
-                                <p class="text-gray-600 dark:text-gray-400 mt-1">Provide the student's current residence details</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="space-y-6">
-                        <div>
-                            <label class="form-label block">Home Address *</label>
-                            <input type="text" id="homeAddress" name="homeAddress" required class="form-input w-full" placeholder="Enter complete home address">
-                        </div>
-                        <div class="grid-responsive">
-                            <div>
-                                <label class="form-label block">City *</label>
-                                <input type="text" id="city" name="city" required class="form-input w-full" placeholder="Enter city">
-                            </div>
-                            <div>
-                                <label class="form-label block">County *</label>
-                                <input type="text" id="county" name="county" required class="form-input w-full" placeholder="Enter county">
-                            </div>
-                            <div>
-                                <label class="form-label block">Postal Code</label>
-                                <input type="text" id="postalCode" name="postalCode" class="form-input w-full" placeholder="Enter postal code">
-                            </div>
-                            <div>
-                                <label class="form-label block">Country</label>
-                                <input type="text" id="country" name="country" class="form-input w-full" value="Kenya" readonly>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mt-12 flex justify-between">
-                        <button type="button" onclick="prevStep()" class="btn-secondary px-8 py-4 text-gray-700 dark:text-gray-200 rounded-full font-semibold">
-                            <i class="fas fa-arrow-left mr-3"></i> Previous
-                        </button>
-                        <button type="button" onclick="nextStep()" class="btn-primary px-8 py-4 text-white rounded-full font-semibold">
                             Continue to Family Info <i class="fas fa-arrow-right ml-3"></i>
                         </button>
                     </div>
                 </div>
 
-                <!-- Step 3: Parent/Guardian Selection -->
-                <div class="form-step step-content" id="step-3">
+                <!-- Step 2: Family Information (All Parent/Guardian Info) -->
+                <div class="form-step step-content" id="step-2">
                     <div class="section-header">
                         <div class="flex items-center mb-4">
                             <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900 rounded-full flex items-center justify-center mr-4">
@@ -738,228 +737,184 @@
                             </div>
                             <div>
                                 <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-200">Family Information</h2>
-                                <p class="text-gray-600 dark:text-gray-400 mt-1">Select the family structure that best describes your situation</p>
+                                <p class="text-gray-600 dark:text-white mt-1">Select your family structure and provide contact details</p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="space-y-6">
-                        <div class="radio-card" onclick="selectRadio('both')">
-                            <label class="flex items-center space-x-4 cursor-pointer">
-                                <input type="radio" name="parentStatus" value="both" class="w-5 h-5 text-indigo-600" onchange="handleFamilyStatusChange()">
-                                <div class="flex items-center space-x-4">
-                                    <div class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center">
-                                        <i class="fas fa-heart text-green-600 dark:text-green-400"></i>
-                                    </div>
-                                    <div>
-                                        <span class="text-xl font-semibold text-gray-800 dark:text-gray-200">Both parents are alive</span>
-                                        <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">We'll collect information for both mother and father</p>
-                                    </div>
-                                </div>
-                            </label>
-                        </div>
-                        
-                        <div class="radio-card" onclick="selectRadio('single')">
-                            <label class="flex items-center space-x-4 cursor-pointer">
-                                <input type="radio" name="parentStatus" value="single" class="w-5 h-5 text-indigo-600" onchange="handleFamilyStatusChange()">
-                                <div class="flex items-center space-x-4">
-                                    <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center">
-                                        <i class="fas fa-user text-blue-600 dark:text-blue-400"></i>
-                                    </div>
-                                    <div>
-                                        <span class="text-xl font-semibold text-gray-800 dark:text-gray-200">Single parent</span>
-                                        <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Only one parent is available or involved</p>
-                                    </div>
-                                </div>
-                            </label>
-                        </div>
-                        
-                        <div class="radio-card" onclick="selectRadio('guardian')">
-                            <label class="flex items-center space-x-4 cursor-pointer">
-                                <input type="radio" name="parentStatus" value="guardian" class="w-5 h-5 text-indigo-600" onchange="handleFamilyStatusChange()">
-                                <div class="flex items-center space-x-4">
-                                    <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center">
-                                        <i class="fas fa-hands-helping text-purple-600 dark:text-purple-400"></i>
-                                    </div>
-                                    <div>
-                                        <span class="text-xl font-semibold text-gray-800 dark:text-gray-200">Guardian</span>
-                                        <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Student is under the care of a legal guardian</p>
-                                    </div>
-                                </div>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Single Parent Selection -->
-                    <div id="single-parent-selection" class="hidden mt-8 p-6 bg-amber-50 dark:bg-amber-900/20 border-2 border-amber-200 dark:border-amber-700 rounded-2xl">
-                        <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4 flex items-center">
-                            <i class="fas fa-info-circle text-amber-600 dark:text-amber-400 mr-2"></i>
-                            Which parent will be the primary contact?
+                    <!-- Family Status Selection -->
+                    <div class="card mb-8">
+                        <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-6 flex items-center">
+                            <i class="fas fa-heart text-red-500 mr-3"></i>
+                            Family Structure
                         </h3>
-                        <div class="space-y-4">
-                            <label class="flex items-center space-x-3 cursor-pointer p-3 rounded-lg hover:bg-amber-100 dark:hover:bg-amber-900/30 transition-colors">
-                                <input type="radio" name="singleParentType" value="father" class="w-4 h-4 text-indigo-600">
-                                <span class="font-medium text-gray-800 dark:text-gray-200">Father only</span>
-                            </label>
-                            <label class="flex items-center space-x-3 cursor-pointer p-3 rounded-lg hover:bg-amber-100 dark:hover:bg-amber-900/30 transition-colors">
-                                <input type="radio" name="singleParentType" value="mother" class="w-4 h-4 text-indigo-600">
-                                <span class="font-medium text-gray-800 dark:text-gray-200">Mother only</span>
-                            </label>
+                        <div class="space-y-6">
+                            <div class="radio-card" onclick="selectRadio('both')">
+                                <label class="flex items-center space-x-4 cursor-pointer">
+                                    <input type="radio" name="parentStatus" value="both" class="w-5 h-5 text-indigo-600" onchange="handleFamilyStatusChange()">
+                                    <div class="flex items-center space-x-4">
+                                        <div class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center">
+                                            <i class="fas fa-heart text-green-600 dark:text-green-400"></i>
+                                        </div>
+                                        <div>
+                                            <span class="text-xl font-semibold text-gray-800 dark:text-white">Both parents are alive</span>
+                                            <p class="text-gray-600 dark:text-white text-sm mt-1">We'll collect information for both mother and father</p>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                            
+                            <div class="radio-card" onclick="selectRadio('single')">
+                                <label class="flex items-center space-x-4 cursor-pointer">
+                                    <input type="radio" name="parentStatus" value="single" class="w-5 h-5 text-indigo-600" onchange="handleFamilyStatusChange()">
+                                    <div class="flex items-center space-x-4">
+                                        <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center">
+                                            <i class="fas fa-user text-blue-600 dark:text-blue-400"></i>
+                                        </div>
+                                        <div>
+                                            <span class="text-xl font-semibold text-gray-800 dark:text-white">Single parent</span>
+                                            <p class="text-gray-600 dark:text-white text-sm mt-1">Only one parent is available or involved</p>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                            
+                            <div class="radio-card" onclick="selectRadio('guardian')">
+                                <label class="flex items-center space-x-4 cursor-pointer">
+                                    <input type="radio" name="parentStatus" value="guardian" class="w-5 h-5 text-indigo-600" onchange="handleFamilyStatusChange()">
+                                    <div class="flex items-center space-x-4">
+                                        <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center">
+                                            <i class="fas fa-hands-helping text-purple-600 dark:text-purple-400"></i>
+                                        </div>
+                                        <div>
+                                            <span class="text-xl font-semibold text-gray-800 dark:text-white">Guardian</span>
+                                            <p class="text-gray-600 dark:text-white text-sm mt-1">Student is under the care of a legal guardian</p>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Single Parent Selection -->
+                        <div id="single-parent-selection" class="hidden mt-8 p-6 bg-amber-50 dark:bg-amber-900/20 border-2 border-amber-200 dark:border-amber-700 rounded-2xl">
+                            <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-4 flex items-center">
+                                <i class="fas fa-info-circle text-amber-600 dark:text-amber-400 mr-2"></i>
+                                Which parent will be the primary contact?
+                            </h3>
+                            <div class="space-y-4">
+                                <label class="flex items-center space-x-3 cursor-pointer p-3 rounded-lg hover:bg-amber-100 dark:hover:bg-amber-900/30 transition-colors">
+                                    <input type="radio" name="singleParentType" value="father" class="w-4 h-4 text-indigo-600">
+                                    <span class="font-medium text-gray-800 dark:text-white">Father only</span>
+                                </label>
+                                <label class="flex items-center space-x-3 cursor-pointer p-3 rounded-lg hover:bg-amber-100 dark:hover:bg-amber-900/30 transition-colors">
+                                    <input type="radio" name="singleParentType" value="mother" class="w-4 h-4 text-indigo-600">
+                                    <span class="font-medium text-gray-800 dark:text-white">Mother only</span>
+                                </label>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="mt-12 flex justify-between">
-                        <button type="button" onclick="prevStep()" class="btn-secondary px-8 py-4 text-gray-700 dark:text-gray-200 rounded-full font-semibold">
-                            <i class="fas fa-arrow-left mr-3"></i> Previous
-                        </button>
-                        <button type="button" onclick="nextStep()" class="btn-primary px-8 py-4 text-white rounded-full font-semibold">
-                            Continue <i class="fas fa-arrow-right ml-3"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Step 4: Father Information -->
-                <div class="form-step step-content" id="step-4">
-                    <div class="section-header">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mr-4">
-                                <i class="fas fa-user-tie text-blue-600 dark:text-blue-400 text-lg"></i>
+                    <!-- Father Information -->
+                    <div class="card mb-8" id="father-info">
+                        <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-6 flex items-center">
+                            <i class="fas fa-user-tie text-blue-600 dark:text-blue-400 mr-3"></i>
+                            Father's Information
+                        </h3>
+                        <div class="grid-responsive">
+                            <div>
+                                <label class="form-label block">Full Name *</label>
+                                <input type="text" id="fatherName" name="fatherName" class="form-input w-full" placeholder="Enter father's full name">
                             </div>
                             <div>
-                                <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-200">Father's Information</h2>
-                                <p class="text-gray-600 dark:text-gray-400 mt-1">Please provide detailed information about the father</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="grid-responsive">
-                        <div>
-                            <label class="form-label block">Full Name *</label>
-                            <input type="text" id="fatherName" name="fatherName" class="form-input w-full" placeholder="Enter father's full name">
-                        </div>
-                        <div>
-                            <label class="form-label block">Email Address *</label>
-                            <input type="email" id="fatherEmail" name="fatherEmail" class="form-input w-full" placeholder="Enter email address">
-                        </div>
-                        <div>
-                            <label class="form-label block">Phone Number *</label>
-                            <input type="tel" id="fatherPhone" name="fatherPhone" class="form-input w-full" placeholder="+254 7XX XXX XXX">
-                        </div>
-                        <div>
-                            <label class="form-label block">Occupation</label>
-                            <input type="text" id="fatherOccupation" name="fatherOccupation" class="form-input w-full" placeholder="Enter occupation">
-                        </div>
-                        <div>
-                            <label class="form-label block">Employer</label>
-                            <input type="text" id="fatherEmployer" name="fatherEmployer" class="form-input w-full" placeholder="Enter employer name">
-                        </div>
-                    </div>
-
-                    <div class="mt-12 flex justify-between">
-                        <button type="button" onclick="prevStep()" class="btn-secondary px-8 py-4 text-gray-700 dark:text-gray-200 rounded-full font-semibold">
-                            <i class="fas fa-arrow-left mr-3"></i> Previous
-                        </button>
-                        <button type="button" onclick="nextStep()" class="btn-primary px-8 py-4 text-white rounded-full font-semibold">
-                            Continue <i class="fas fa-arrow-right ml-3"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Step 5: Mother Information -->
-                <div class="form-step step-content" id="step-5">
-                    <div class="section-header">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 bg-pink-100 dark:bg-pink-900 rounded-full flex items-center justify-center mr-4">
-                                <i class="fas fa-female text-pink-600 dark:text-pink-400 text-lg"></i>
+                                <label class="form-label block">Email Address *</label>
+                                <input type="email" id="fatherEmail" name="fatherEmail" class="form-input w-full" placeholder="Enter email address">
                             </div>
                             <div>
-                                <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-200">Mother's Information</h2>
-                                <p class="text-gray-600 dark:text-gray-400 mt-1">Please provide detailed information about the mother</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="grid-responsive">
-                        <div>
-                            <label class="form-label block">Full Name *</label>
-                            <input type="text" id="motherName" name="motherName" class="form-input w-full" placeholder="Enter mother's full name">
-                        </div>
-                        <div>
-                            <label class="form-label block">Email Address *</label>
-                            <input type="email" id="motherEmail" name="motherEmail" class="form-input w-full" placeholder="Enter email address">
-                        </div>
-                        <div>
-                            <label class="form-label block">Phone Number *</label>
-                            <input type="tel" id="motherPhone" name="motherPhone" class="form-input w-full" placeholder="+254 7XX XXX XXX">
-                        </div>
-                        <div>
-                            <label class="form-label block">Occupation</label>
-                            <input type="text" id="motherOccupation" name="motherOccupation" class="form-input w-full" placeholder="Enter occupation">
-                        </div>
-                        <div>
-                            <label class="form-label block">Employer</label>
-                            <input type="text" id="motherEmployer" name="motherEmployer" class="form-input w-full" placeholder="Enter employer name">
-                        </div>
-                    </div>
-
-                    <div class="mt-12 flex justify-between">
-                        <button type="button" onclick="prevStep()" class="btn-secondary px-8 py-4 text-gray-700 dark:text-gray-200 rounded-full font-semibold">
-                            <i class="fas fa-arrow-left mr-3"></i> Previous
-                        </button>
-                        <button type="button" onclick="nextStep()" class="btn-primary px-8 py-4 text-white rounded-full font-semibold">
-                            Continue <i class="fas fa-arrow-right ml-3"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Step 6: Guardian Information -->
-                <div class="form-step step-content" id="step-6">
-                    <div class="section-header">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center mr-4">
-                                <i class="fas fa-hands-helping text-purple-600 dark:text-purple-400 text-lg"></i>
+                                <label class="form-label block">Phone Number *</label>
+                                <input type="tel" id="fatherPhone" name="fatherPhone" class="form-input w-full" placeholder="+254 7XX XXX XXX">
                             </div>
                             <div>
-                                <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-200">Guardian Information</h2>
-                                <p class="text-gray-600 dark:text-gray-400 mt-1">Please provide detailed information about the legal guardian</p>
+                                <label class="form-label block">Occupation</label>
+                                <input type="text" id="fatherOccupation" name="fatherOccupation" class="form-input w-full" placeholder="Enter occupation">
+                            </div>
+                            <div>
+                                <label class="form-label block">Employer</label>
+                                <input type="text" id="fatherEmployer" name="fatherEmployer" class="form-input w-full" placeholder="Enter employer name">
                             </div>
                         </div>
                     </div>
 
-                    <div class="grid-responsive">
-                        <div>
-                            <label class="form-label block">Full Name *</label>
-                            <input type="text" id="guardianName" name="guardianName" class="form-input w-full" placeholder="Enter guardian's full name">
+                    <!-- Mother Information -->
+                    <div class="card mb-8" id="mother-info">
+                        <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-6 flex items-center">
+                            <i class="fas fa-female text-pink-600 dark:text-pink-400 mr-3"></i>
+                            Mother's Information
+                        </h3>
+                        <div class="grid-responsive">
+                            <div>
+                                <label class="form-label block">Full Name *</label>
+                                <input type="text" id="motherName" name="motherName" class="form-input w-full" placeholder="Enter mother's full name">
+                            </div>
+                            <div>
+                                <label class="form-label block">Email Address *</label>
+                                <input type="email" id="motherEmail" name="motherEmail" class="form-input w-full" placeholder="Enter email address">
+                            </div>
+                            <div>
+                                <label class="form-label block">Phone Number *</label>
+                                <input type="tel" id="motherPhone" name="motherPhone" class="form-input w-full" placeholder="+254 7XX XXX XXX">
+                            </div>
+                            <div>
+                                <label class="form-label block">Occupation</label>
+                                <input type="text" id="motherOccupation" name="motherOccupation" class="form-input w-full" placeholder="Enter occupation">
+                            </div>
+                            <div>
+                                <label class="form-label block">Employer</label>
+                                <input type="text" id="motherEmployer" name="motherEmployer" class="form-input w-full" placeholder="Enter employer name">
+                            </div>
                         </div>
-                        <div>
-                            <label class="form-label block">Relationship to Student *</label>
-                            <select id="guardianRelationship" name="guardianRelationship" class="form-input w-full">
-                                <option value="">Select Relationship</option>
-                                <option value="grandmother">Grandmother</option>
-                                <option value="grandfather">Grandfather</option>
-                                <option value="aunt">Aunt</option>
-                                <option value="uncle">Uncle</option>
-                                <option value="sister">Sister</option>
-                                <option value="brother">Brother</option>
-                                <option value="family-friend">Family Friend</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="form-label block">Email Address *</label>
-                            <input type="email" id="guardianEmail" name="guardianEmail" class="form-input w-full" placeholder="Enter email address">
-                        </div>
-                        <div>
-                            <label class="form-label block">Phone Number *</label>
-                            <input type="tel" id="guardianPhone" name="guardianPhone" class="form-input w-full" placeholder="+254 7XX XXX XXX">
-                        </div>
-                        <div>
-                            <label class="form-label block">Occupation</label>
-                            <input type="text" id="guardianOccupation" name="guardianOccupation" class="form-input w-full" placeholder="Enter occupation">
-                        </div>
-                        <div>
-                            <label class="form-label block">Employer</label>
-                            <input type="text" id="guardianEmployer" name="guardianEmployer" class="form-input w-full" placeholder="Enter employer name">
+                    </div>
+
+                    <!-- Guardian Information -->
+                    <div class="card hidden" id="guardian-info">
+                        <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-6 flex items-center">
+                            <i class="fas fa-hands-helping text-purple-600 dark:text-purple-400 mr-3"></i>
+                            Guardian Information
+                        </h3>
+                        <div class="grid-responsive">
+                            <div>
+                                <label class="form-label block">Full Name *</label>
+                                <input type="text" id="guardianName" name="guardianName" class="form-input w-full" placeholder="Enter guardian's full name">
+                            </div>
+                            <div>
+                                <label class="form-label block">Relationship to Student *</label>
+                                <select id="guardianRelationship" name="guardianRelationship" class="form-input w-full">
+                                    <option value="">Select Relationship</option>
+                                    <option value="grandmother">Grandmother</option>
+                                    <option value="grandfather">Grandfather</option>
+                                    <option value="aunt">Aunt</option>
+                                    <option value="uncle">Uncle</option>
+                                    <option value="sister">Sister</option>
+                                    <option value="brother">Brother</option>
+                                    <option value="family-friend">Family Friend</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="form-label block">Email Address *</label>
+                                <input type="email" id="guardianEmail" name="guardianEmail" class="form-input w-full" placeholder="Enter email address">
+                            </div>
+                            <div>
+                                <label class="form-label block">Phone Number *</label>
+                                <input type="tel" id="guardianPhone" name="guardianPhone" class="form-input w-full" placeholder="+254 7XX XXX XXX">
+                            </div>
+                            <div>
+                                <label class="form-label block">Occupation</label>
+                                <input type="text" id="guardianOccupation" name="guardianOccupation" class="form-input w-full" placeholder="Enter occupation">
+                            </div>
+                            <div>
+                                <label class="form-label block">Employer</label>
+                                <input type="text" id="guardianEmployer" name="guardianEmployer" class="form-input w-full" placeholder="Enter employer name">
+                            </div>
                         </div>
                     </div>
 
@@ -973,53 +928,86 @@
                     </div>
                 </div>
 
-                <!-- Step 7: Academic Information -->
-                <div class="form-step step-content" id="step-7">
+                <!-- Step 3: Academic & Health Information -->
+                <div class="form-step step-content" id="step-3">
                     <div class="section-header">
                         <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mr-4">
-                                <i class="fas fa-book text-green-600 dark:text-green-400 text-lg"></i>
+                            <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-book text-indigo-600 dark:text-indigo-400 text-lg"></i>
                             </div>
                             <div>
-                                <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-200">Academic Information</h2>
-                                <p class="text-gray-600 dark:text-gray-400 mt-1">Tell us about the student's educational background</p>
+                                <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-200">Academic & Health Information</h2>
+                                <p class="text-gray-600 dark:text-white mt-1">Educational background and health details</p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="grid-responsive">
-                        <div>
-                            <label class="form-label block">Grade/Class Applying For *</label>
-                            <select id="gradeApplying" name="gradeApplying" required class="form-input w-full">
-                                <option value="">Select Grade</option>
-                                <option value="nursery">Nursery</option>
-                                <option value="pre-primary-1">Pre-Primary 1</option>
-                                <option value="pre-primary-2">Pre-Primary 2</option>
-                                <option value="grade-1">Grade 1</option>
-                                <option value="grade-2">Grade 2</option>
-                                <option value="grade-3">Grade 3</option>
-                                <option value="grade-4">Grade 4</option>
-                                <option value="grade-5">Grade 5</option>
-                                <option value="grade-6">Grade 6</option>
-                                <option value="grade-7">Grade 7</option>
-                                <option value="grade-8">Grade 8</option>
-                            </select>
+                    <!-- Academic Information -->
+                    <div class="card mb-8">
+                        <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-6 flex items-center">
+                            <i class="fas fa-graduation-cap text-green-600 dark:text-green-400 mr-3"></i>
+                            Academic Background
+                        </h3>
+                        <div class="grid-responsive">
+                            <div>
+                                <label class="form-label block">Grade/Class Applying For *</label>
+                                <select id="gradeApplying" name="gradeApplying" required class="form-input w-full">
+                                    <option value="">Select Grade</option>
+                                    <option value="nursery">Nursery</option>
+                                    <option value="pre-primary-1">Pre-Primary 1</option>
+                                    <option value="pre-primary-2">Pre-Primary 2</option>
+                                    <option value="grade-1">Grade 1</option>
+                                    <option value="grade-2">Grade 2</option>
+                                    <option value="grade-3">Grade 3</option>
+                                    <option value="grade-4">Grade 4</option>
+                                    <option value="grade-5">Grade 5</option>
+                                    <option value="grade-6">Grade 6</option>
+                                    <option value="grade-7">Grade 7</option>
+                                    <option value="grade-8">Grade 8</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="form-label block">Previous School</label>
+                                <input type="text" id="previousSchool" name="previousSchool" class="form-input w-full" placeholder="Enter previous school name">
+                            </div>
+                            <div>
+                                <label class="form-label block">Previous School Address</label>
+                                <input type="text" id="previousSchoolAddress" name="previousSchoolAddress" class="form-input w-full" placeholder="Enter previous school address">
+                            </div>
+                            <div>
+                                <label class="form-label block">Previous Class/Grade</label>
+                                <input type="text" id="previousClass" name="previousClass" class="form-input w-full" placeholder="Enter previous grade/class">
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="form-label block">Reason for Leaving Previous School</label>
+                                <input type="text" id="reasonForLeaving" name="reasonForLeaving" class="form-input w-full" placeholder="Optional: Brief reason for school change">
+                            </div>
                         </div>
-                        <div>
-                            <label class="form-label block">Previous School</label>
-                            <input type="text" id="previousSchool" name="previousSchool" class="form-input w-full" placeholder="Enter previous school name">
-                        </div>
-                        <div>
-                            <label class="form-label block">Previous School Address</label>
-                            <input type="text" id="previousSchoolAddress" name="previousSchoolAddress" class="form-input w-full" placeholder="Enter previous school address">
-                        </div>
-                        <div>
-                            <label class="form-label block">Previous Class/Grade</label>
-                            <input type="text" id="previousClass" name="previousClass" class="form-input w-full" placeholder="Enter previous grade/class">
-                        </div>
-                        <div class="md:col-span-2">
-                            <label class="form-label block">Reason for Leaving Previous School</label>
-                            <input type="text" id="reasonForLeaving" name="reasonForLeaving" class="form-input w-full" placeholder="Optional: Brief reason for school change">
+                    </div>
+
+                    <!-- Health Information -->
+                    <div class="card">
+                        <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-6 flex items-center">
+                            <i class="fas fa-heartbeat text-red-600 dark:text-red-400 mr-3"></i>
+                            Health Information
+                        </h3>
+                        <div class="space-y-6">
+                            <div>
+                                <label class="form-label block">Medical Conditions</label>
+                                <textarea id="medicalConditions" name="medicalConditions" rows="4" class="form-input w-full" placeholder="Please list any medical conditions the student has (e.g., asthma, diabetes, heart conditions). Write 'None' if no conditions."></textarea>
+                            </div>
+                            <div>
+                                <label class="form-label block">Allergies</label>
+                                <textarea id="allergies" name="allergies" rows="4" class="form-input w-full" placeholder="Please list any allergies (food, medication, environmental). Write 'None' if no allergies."></textarea>
+                            </div>
+                            <div>
+                                <label class="form-label block">Current Medications</label>
+                                <textarea id="medications" name="medications" rows="4" class="form-input w-full" placeholder="Please list any medications the student takes regularly. Write 'None' if no medications."></textarea>
+                            </div>
+                            <div>
+                                <label class="form-label block">Special Needs or Learning Difficulties</label>
+                                <textarea id="specialNeeds" name="specialNeeds" rows="4" class="form-input w-full" placeholder="Please describe any special educational needs, learning difficulties, or accommodations required. Write 'None' if no special needs."></textarea>
+                            </div>
                         </div>
                     </div>
 
@@ -1028,71 +1016,28 @@
                             <i class="fas fa-arrow-left mr-3"></i> Previous
                         </button>
                         <button type="button" onclick="nextStep()" class="btn-primary px-8 py-4 text-white rounded-full font-semibold">
-                            Continue to Health Info <i class="fas fa-arrow-right ml-3"></i>
+                            Continue <i class="fas fa-arrow-right ml-3"></i>
                         </button>
                     </div>
                 </div>
 
-                <!-- Step 8: Health Information -->
-                <div class="form-step step-content" id="step-8">
+                <!-- Step 4: Emergency Contact & Additional Information -->
+                <div class="form-step step-content" id="step-4">
                     <div class="section-header">
                         <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 bg-red-100 dark:bg-red-900 rounded-full flex items-center justify-center mr-4">
-                                <i class="fas fa-heartbeat text-red-600 dark:text-red-400 text-lg"></i>
+                            <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-phone text-indigo-600 dark:text-indigo-400 text-lg"></i>
                             </div>
                             <div>
-                                <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-200">Health Information</h2>
-                                <p class="text-gray-600 dark:text-gray-400 mt-1">Important medical information to ensure student safety</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="space-y-6">
-                        <div>
-                            <label class="form-label block">Medical Conditions</label>
-                            <textarea id="medicalConditions" name="medicalConditions" rows="4" class="form-input w-full" placeholder="Please list any medical conditions the student has (e.g., asthma, diabetes, heart conditions). Write 'None' if no conditions."></textarea>
-                        </div>
-                        <div>
-                            <label class="form-label block">Allergies</label>
-                            <textarea id="allergies" name="allergies" rows="4" class="form-input w-full" placeholder="Please list any allergies (food, medication, environmental). Write 'None' if no allergies."></textarea>
-                        </div>
-                        <div>
-                            <label class="form-label block">Current Medications</label>
-                            <textarea id="medications" name="medications" rows="4" class="form-input w-full" placeholder="Please list any medications the student takes regularly. Write 'None' if no medications."></textarea>
-                        </div>
-                        <div>
-                            <label class="form-label block">Special Needs or Learning Difficulties</label>
-                            <textarea id="specialNeeds" name="specialNeeds" rows="4" class="form-input w-full" placeholder="Please describe any special educational needs, learning difficulties, or accommodations required. Write 'None' if no special needs."></textarea>
-                        </div>
-                    </div>
-
-                    <div class="mt-12 flex justify-between">
-                        <button type="button" onclick="prevStep()" class="btn-secondary px-8 py-4 text-gray-700 dark:text-gray-200 rounded-full font-semibold">
-                            <i class="fas fa-arrow-left mr-3"></i> Previous
-                        </button>
-                        <button type="button" onclick="nextStep()" class="btn-primary px-8 py-4 text-white rounded-full font-semibold">
-                            Final Step <i class="fas fa-arrow-right ml-3"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Step 9: Declaration and Submit -->
-                <div class="form-step step-content" id="step-9">
-                    <div class="section-header">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 bg-amber-100 dark:bg-amber-900 rounded-full flex items-center justify-center mr-4">
-                                <i class="fas fa-file-contract text-amber-600 dark:text-amber-400 text-lg"></i>
-                            </div>
-                            <div>
-                                <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-200">Final Details & Submission</h2>
-                                <p class="text-gray-600 dark:text-gray-400 mt-1">Complete the emergency contact information and review your application</p>
+                                <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-200">Emergency Contact & Additional Information</h2>
+                                <p class="text-gray-600 dark:text-white mt-1">Emergency contact details and additional information</p>
                             </div>
                         </div>
                     </div>
 
                     <!-- Emergency Contact -->
                     <div class="card mb-8">
-                        <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-6 flex items-center">
+                        <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-6 flex items-center">
                             <i class="fas fa-phone text-red-500 mr-3"></i>
                             Emergency Contact Information
                         </h3>
@@ -1109,6 +1054,16 @@
                                 <label class="form-label block">Relationship to Student *</label>
                                 <input type="text" id="emergencyRelationship" name="emergencyRelationship" required class="form-input w-full" placeholder="e.g., Aunt, Uncle, Grandmother">
                             </div>
+                        </div>
+                    </div>
+
+                    <!-- Additional Information -->
+                    <div class="card">
+                        <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-6 flex items-center">
+                            <i class="fas fa-info-circle text-blue-500 mr-3"></i>
+                            Additional Information
+                        </h3>
+                        <div class="grid-responsive">
                             <div>
                                 <label class="form-label block">How did you hear about our school?</label>
                                 <select id="howHeard" name="howHeard" class="form-input w-full">
@@ -1129,13 +1084,37 @@
                         </div>
                     </div>
 
+                    <div class="mt-12 flex justify-between">
+                        <button type="button" onclick="prevStep()" class="btn-secondary px-8 py-4 text-gray-700 dark:text-gray-200 rounded-full font-semibold">
+                            <i class="fas fa-arrow-left mr-3"></i> Previous
+                        </button>
+                        <button type="button" onclick="nextStep()" class="btn-primary px-8 py-4 text-white rounded-full font-semibold">
+                            Final Step <i class="fas fa-arrow-right ml-3"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 5: Declaration and Submit -->
+                <div class="form-step step-content" id="step-5">
+                    <div class="section-header">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-amber-100 dark:bg-amber-900 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-file-contract text-amber-600 dark:text-amber-400 text-lg"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-200">Declaration and Submission</h2>
+                                <p class="text-gray-600 dark:text-white mt-1">Review and confirm your application</p>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Declaration -->
                     <div class="alert alert-info mb-8">
-                        <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4 flex items-center">
+                        <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-4 flex items-center">
                             <i class="fas fa-info-circle mr-2"></i>
                             Application Declaration
                         </h3>
-                        <div class="space-y-3 text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                        <div class="space-y-3 text-sm text-gray-700 dark:text-white leading-relaxed">
                             <p>• I declare that all information provided in this application is true and complete to the best of my knowledge.</p>
                             <p>• I understand that any false information may result in the rejection of this application or dismissal of the student.</p>
                             <p>• I agree to abide by the school's rules, regulations, and policies as outlined in the school handbook.</p>
@@ -1149,19 +1128,19 @@
                     <div class="space-y-4 mb-8">
                         <label class="flex items-start space-x-4 p-4 border-2 border-gray-200 dark:border-gray-600 rounded-lg hover:border-indigo-300 dark:hover:border-indigo-500 transition-colors cursor-pointer">
                             <input type="checkbox" id="agreeDeclaration" name="agreeDeclaration" class="checkbox-custom mt-1" required>
-                            <span class="text-gray-700 dark:text-gray-300 font-medium">I have read and agree to the above declaration *</span>
+                            <span class="text-gray-700 dark:text-white font-medium">I have read and agree to the above declaration *</span>
                         </label>
                         <label class="flex items-start space-x-4 p-4 border-2 border-gray-200 dark:border-gray-600 rounded-lg hover:border-indigo-300 dark:hover:border-indigo-500 transition-colors cursor-pointer">
                             <input type="checkbox" id="agreeTerms" name="agreeTerms" class="checkbox-custom mt-1" required>
-                            <span class="text-gray-700 dark:text-gray-300 font-medium">I agree to the school's terms and conditions *</span>
+                            <span class="text-gray-700 dark:text-white font-medium">I agree to the school's terms and conditions *</span>
                         </label>
                         <label class="flex items-start space-x-4 p-4 border-2 border-gray-200 dark:border-gray-600 rounded-lg hover:border-indigo-300 dark:hover:border-indigo-500 transition-colors cursor-pointer">
                             <input type="checkbox" id="consentContact" name="consentContact" class="checkbox-custom mt-1" required>
-                            <span class="text-gray-700 dark:text-gray-300 font-medium">I consent to being contacted by the school *</span>
+                            <span class="text-gray-700 dark:text-white font-medium">I consent to being contacted by the school *</span>
                         </label>
                         <label class="flex items-start space-x-4 p-4 border-2 border-gray-200 dark:border-gray-600 rounded-lg hover:border-indigo-300 dark:hover:border-indigo-500 transition-colors cursor-pointer">
                             <input type="checkbox" id="documentsReady" name="documentsReady" class="checkbox-custom mt-1" required>
-                            <span class="text-gray-700 dark:text-gray-300 font-medium">I understand the required documents and will submit them within 7 days *</span>
+                            <span class="text-gray-700 dark:text-white font-medium">I understand the required documents and will submit them within 7 days *</span>
                         </label>
                     </div>
 
@@ -1635,7 +1614,7 @@
 
         // Multi-step form navigation
         let currentStep = 1;
-        const totalSteps = 9;
+        const totalSteps = 5;
 
         function updateProgress() {
             const progress = (currentStep / totalSteps) * 100;
@@ -1698,64 +1677,16 @@
 
         function nextStep() {
             if (validateCurrentStep()) {
-                const parentStatus = document.querySelector('input[name="parentStatus"]:checked')?.value;
-                
-                if (currentStep === 3) {
-                    if (parentStatus === 'both') {
-                        currentStep = 4;
-                    } else if (parentStatus === 'single') {
-                        const singleParentType = document.querySelector('input[name="singleParentType"]:checked')?.value;
-                        if (singleParentType === 'father') {
-                            currentStep = 4;
-                        } else if (singleParentType === 'mother') {
-                            currentStep = 5;
-                        }
-                    } else if (parentStatus === 'guardian') {
-                        currentStep = 6;
-                    }
-                } else if (currentStep === 4) {
-                    if (parentStatus === 'both') {
-                        currentStep = 5;
-                    } else if (parentStatus === 'single') {
-                        currentStep = 7;
-                    }
-                } else if (currentStep === 5) {
-                    currentStep = 7;
-                } else if (currentStep === 6) {
-                    currentStep = 7;
-                } else {
+                if (currentStep < totalSteps) {
                     currentStep++;
+                    showStep(currentStep);
                 }
-                
-                showStep(currentStep);
             }
         }
 
         function prevStep() {
             if (currentStep > 1) {
-                const parentStatus = document.querySelector('input[name="parentStatus"]:checked')?.value;
-                
-                if (currentStep === 7) {
-                    if (parentStatus === 'both') {
-                        currentStep = 5;
-                    } else if (parentStatus === 'single') {
-                        const singleParentType = document.querySelector('input[name="singleParentType"]:checked')?.value;
-                        if (singleParentType === 'father') {
-                            currentStep = 4;
-                        } else if (singleParentType === 'mother') {
-                            currentStep = 5;
-                        }
-                    } else if (parentStatus === 'guardian') {
-                        currentStep = 6;
-                    }
-                } else if (currentStep === 5) {
-                    currentStep = 4;
-                } else if (currentStep === 4 || currentStep === 6) {
-                    currentStep = 3;
-                } else {
-                    currentStep--;
-                }
-                
+                currentStep--;
                 showStep(currentStep);
             }
         }
@@ -1776,7 +1707,7 @@
                 }
             }
             
-            if (currentStep === 3) {
+            if (currentStep === 2) {
                 const parentStatus = document.querySelector('input[name="parentStatus"]:checked');
                 if (!parentStatus) {
                     alert('Please select a family status.');
@@ -1798,6 +1729,9 @@
         function handleFamilyStatusChange() {
             const parentStatus = document.querySelector('input[name="parentStatus"]:checked');
             const singleParentSelection = document.getElementById('single-parent-selection');
+            const fatherInfo = document.getElementById('father-info');
+            const motherInfo = document.getElementById('mother-info');
+            const guardianInfo = document.getElementById('guardian-info');
             
             // Update radio card selections with animation
             document.querySelectorAll('.radio-card').forEach(card => {
@@ -1808,15 +1742,25 @@
                 parentStatus.closest('.radio-card').classList.add('selected');
             }
             
+            // Hide all sections first
             singleParentSelection.classList.add('hidden');
+            fatherInfo.classList.remove('hidden');
+            motherInfo.classList.remove('hidden');
+            guardianInfo.classList.add('hidden');
             
-            if (parentStatus && parentStatus.value === 'single') {
-                singleParentSelection.classList.remove('hidden');
-                singleParentSelection.classList.add('slide-up');
-                
-                setTimeout(() => {
-                    singleParentSelection.classList.remove('slide-up');
-                }, 500);
+            if (parentStatus) {
+                if (parentStatus.value === 'single') {
+                    singleParentSelection.classList.remove('hidden');
+                    singleParentSelection.classList.add('slide-up');
+                    
+                    setTimeout(() => {
+                        singleParentSelection.classList.remove('slide-up');
+                    }, 500);
+                } else if (parentStatus.value === 'guardian') {
+                    fatherInfo.classList.add('hidden');
+                    motherInfo.classList.add('hidden');
+                    guardianInfo.classList.remove('hidden');
+                }
             }
         }
 
