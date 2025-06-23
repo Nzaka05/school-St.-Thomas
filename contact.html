@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - St. Thomas Junior School</title>
+    <meta name="description" content="Contact St. Thomas Junior School for admissions, programs, or general inquiries. We're here to help!">
+    <meta property="og:title" content="Contact Us - St. Thomas Junior School">
+    <meta property="og:description" content="Get in touch with St. Thomas Junior School. We're here to help with any questions about admissions, programs, or general inquiries.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourdomain/contact.html">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+        
+        .contact-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            transition: all 0.3s ease;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-input {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(59, 130, 246, 0.5);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #1d4ed8, #1e40af);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .map-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 24px;
+            box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .whatsapp-float:hover {
+            background-color: #128c7e;
+            transform: scale(1.1);
+        }
+        
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-3px);
+        }
+        
+        .navbar-glass {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .nav-link {
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: #3b82f6;
+        }
+        
+        .nav-link.active {
+            color: #3b82f6;
+            font-weight: 600;
+        }
+        
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #3b82f6;
+        }
+
+        @keyframes deliver {
+            0% { transform: scale(0.8) rotate(-5deg) translateY(100px); opacity: 0; }
+            60% { transform: scale(1.05) rotate(2deg) translateY(-10px); opacity: 1; }
+            100% { transform: scale(1) rotate(0deg) translateY(0); opacity: 1; }
+        }
+        .animate-deliver {
+            animation: deliver 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        /* Enhanced Character Animations */
+        #animatedCharacter {
+            position: absolute;
+            transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 10;
+        }
+
+        .walking {
+            animation: walk 0.8s infinite;
+        }
+
+        @keyframes walk {
+            0%, 100% { transform: translateY(0px) rotateZ(0deg); }
+            25% { transform: translateY(-3px) rotateZ(-1deg); }
+            50% { transform: translateY(0px) rotateZ(0deg); }
+            75% { transform: translateY(-3px) rotateZ(1deg); }
+        }
+
+        .bowing {
+            animation: bow 1.5s ease-in-out;
+        }
+
+        @keyframes bow {
+            0% { transform: rotateX(0deg) rotateZ(0deg); }
+            30% { transform: rotateX(45deg) rotateZ(-5deg) translateY(15px); }
+            60% { transform: rotateX(45deg) rotateZ(-5deg) translateY(15px); }
+            100% { transform: rotateX(0deg) rotateZ(0deg) translateY(0px); }
+        }
+
+        .pointing-left {
+            animation: pointLeft 0.8s ease-in-out forwards;
+        }
+
+        .pointing-right {
+            animation: pointRight 0.8s ease-in-out forwards;
+        }
+
+        @keyframes pointLeft {
+            0% { transform: translateX(0) rotateZ(0deg); }
+            100% { transform: translateX(-15px) rotateZ(-10deg); }
+        }
+
+        @keyframes pointRight {
+            0% { transform: translateX(0) rotateZ(0deg); }
+            100% { transform: translateX(15px) rotateZ(10deg); }
+        }
+
+        .excited {
+            animation: excited 0.6s ease-in-out;
+        }
+
+        @keyframes excited {
+            0%, 100% { transform: scale(1) rotateZ(0deg); }
+            25% { transform: scale(1.1) rotateZ(-3deg); }
+            75% { transform: scale(1.1) rotateZ(3deg); }
+        }
+
+        .thank-you-popup {
+            position: absolute;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            opacity: 0;
+            animation: thankYouPop 2s ease-in-out;
+            box-shadow: 0 4px 20px rgba(16, 185, 129, 0.4);
+            z-index: 20;
+        }
+
+        @keyframes thankYouPop {
+            0% { opacity: 0; transform: translateX(-50%) translateY(20px) scale(0.8); }
+            20% { opacity: 1; transform: translateX(-50%) translateY(0px) scale(1.1); }
+            80% { opacity: 1; transform: translateX(-50%) translateY(0px) scale(1); }
+            100% { opacity: 0; transform: translateX(-50%) translateY(-10px) scale(0.9); }
+        }
+
+        .speech-bubble {
+            position: absolute;
+            top: -80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 12px 18px;
+            border-radius: 18px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #374151;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            animation: speechBubble 3s ease-in-out;
+            max-width: 200px;
+            text-align: center;
+            z-index: 15;
+        }
+
+        .speech-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 8px solid white;
+        }
+
+        @keyframes speechBubble {
+            0% { opacity: 0; transform: translateX(-50%) translateY(10px) scale(0.8); }
+            15% { opacity: 1; transform: translateX(-50%) translateY(0px) scale(1); }
+            85% { opacity: 1; transform: translateX(-50%) translateY(0px) scale(1); }
+            100% { opacity: 0; transform: translateX(-50%) translateY(-10px) scale(0.8); }
+        }
+
+        .animate-guy {
+            animation: guyPop 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        @keyframes guyPop {
+            0% { transform: scale(0.3) translateY(60px); opacity: 0; }
+            60% { transform: scale(1.1) translateY(-10px); opacity: 1; }
+            100% { transform: scale(1) translateY(0); opacity: 1; }
+        }
+
+        .character-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+        }
+
+        .button-glow {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.4); }
+            50% { box-shadow: 0 0 30px rgba(59, 130, 246, 0.6); }
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <!-- Navigation -->
+    <nav class="navbar-glass fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <h1 class="text-xl font-bold text-blue-600">St. Thomas Junior School</h1>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="index.html" class="nav-link text-gray-700 hover:text-blue-600 px-3 py-2 text-sm">Home</a>
+                        <a href="about.html" class="nav-link text-gray-700 hover:text-blue-600 px-3 py-2 text-sm">About</a>
+                        <a href="academics.html" class="nav-link text-gray-700 hover:text-blue-600 px-3 py-2 text-sm">Academics</a>
+                        <a href="gallery.html" class="nav-link text-gray-700 hover:text-blue-600 px-3 py-2 text-sm">Gallery</a>
+                        <a href="contact.html" class="nav-link active text-blue-600 px-3 py-2 text-sm">Contact</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button class="mobile-menu-button text-gray-700 hover:text-blue-600">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div class="mobile-menu hidden md:hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white">
+                <a href="index.html" class="nav-link block text-gray-700 hover:text-blue-600 px-3 py-2 text-sm">Home</a>
+                <a href="about.html" class="nav-link block text-gray-700 hover:text-blue-600 px-3 py-2 text-sm">About</a>
+                <a href="academics.html" class="nav-link block text-gray-700 hover:text-blue-600 px-3 py-2 text-sm">Academics</a>
+                <a href="gallery.html" class="nav-link block text-gray-700 hover:text-blue-600 px-3 py-2 text-sm">Gallery</a>
+                <a href="contact.html" class="nav-link active block text-blue-600 px-3 py-2 text-sm">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient pt-20 pb-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">
+                    Contact Us
+                </h1>
+                <p class="text-xl text-white opacity-90 max-w-3xl mx-auto">
+                    Get in touch with St. Thomas Junior School. We're here to help with any questions about admissions, programs, or general inquiries.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Information -->
+    <section class="py-16 -mt-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <!-- Phone -->
+                <div class="contact-card rounded-xl p-8 text-center">
+                    <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-phone text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Phone</h3>
+                    <p class="text-gray-600 mb-4">Call us during office hours</p>
+                    <a href="tel:+254740833092" class="text-blue-600 hover:text-blue-800 font-medium">
+                        +254 740833092
+                    </a>
+                </div>
+
+                <!-- Email -->
+                <div class="contact-card rounded-xl p-8 text-center">
+                    <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-envelope text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Email</h3>
+                    <p class="text-gray-600 mb-4">Send us an email anytime</p>
+                    <a href="mailto:info@stthomasjunior.ac.ke" class="text-blue-600 hover:text-blue-800 font-medium">
+                        info@stthomasjunior.ac.ke
+                    </a>
+                </div>
+
+                <!-- Address -->
+                <div class="contact-card rounded-xl p-8 text-center">
+                    <div class="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-map-marker-alt text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Address</h3>
+                    <p class="text-gray-600 mb-4">Visit our campus</p>
+                    <p class="text-gray-700">
+                        Kiembeni, Bamburi<br>
+                        Mombasa, Kenya<br>
+                        P.O. Box 22-80100
+                    </p>
+                </div>
+            </div>
+
+            <!-- Contact Form and Map -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Contact Form -->
+                <div class="glass-card rounded-xl p-8">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Send us a Message</h2>
+                    <form action="https://formsubmit.co/ajax/nzakagideon05@gmail.com" method="POST" class="space-y-6" id="contactForm">
+                        <input type="hidden" name="_subject" value="New Contact Form Submission - St. Thomas Junior School">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_autoresponse" value="Thank you for contacting St. Thomas Junior School! We have received your message and will get back to you as soon as possible. Thank you for visiting our site.">
+                        <input type="text" name="_honey" style="display:none">
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="firstName" class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
+                                <input type="text" id="firstName" name="firstName" required
+                                    class="form-input w-full px-4 py-3 rounded-lg text-gray-700 placeholder-gray-500 focus:outline-none"
+                                    placeholder="Enter your first name">
+                            </div>
+                            <div>
+                                <label for="lastName" class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
+                                <input type="text" id="lastName" name="lastName" required
+                                    class="form-input w-full px-4 py-3 rounded-lg text-gray-700 placeholder-gray-500 focus:outline-none"
+                                    placeholder="Enter your last name">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                            <input type="email" id="email" name="email" required
+                                class="form-input w-full px-4 py-3 rounded-lg text-gray-700 placeholder-gray-500 focus:outline-none"
+                                placeholder="Enter your email address">
+                        </div>
+
+                        <div>
+                            <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                            <input type="tel" id="phone" name="phone"
+                                class="form-input w-full px-4 py-3 rounded-lg text-gray-700 placeholder-gray-500 focus:outline-none"
+                                placeholder="Enter your phone number">
+                        </div>
+
+                        <div>
+                            <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">Subject</label>
+                            <select id="subject" name="subject" required
+                                class="form-input w-full px-4 py-3 rounded-lg text-gray-700 focus:outline-none">
+                                <option value="">Select a subject</option>
+                                <option value="Admissions Inquiry">Admissions Inquiry</option>
+                                <option value="Academic Programs">Academic Programs</option>
+                                <option value="School Fees">School Fees</option>
+                                <option value="General Information">General Information</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                            <textarea id="message" name="message" rows="5" required
+                                class="form-input w-full px-4 py-3 rounded-lg text-gray-700 placeholder-gray-500 focus:outline-none resize-none"
+                                placeholder="Enter your message here..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-primary w-full py-3 px-6 rounded-lg text-white font-medium">
+                            <i class="fas fa-paper-plane mr-2"></i>
+                            Send Message
+                        </button>
+                    </form>
+
+                    <!-- Thank You Modal -->
+                    <div id="thankYouModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 hidden">
+                        <div class="bg-white rounded-lg shadow-lg p-8 max-w-sm text-center animate-deliver relative">
+                            <div class="flex justify-center mb-4">
+                                <i class="fas fa-envelope-open-text text-green-500 text-4xl animate-bounce"></i>
+                            </div>
+                            <h2 class="text-2xl font-bold mb-4 text-green-600">Thank You!</h2>
+                            <p class="mb-6 text-gray-700">Thank you for contacting us, we will get back to you as soon as possible.</p>
+                            <button aria-label="Close Thank You Modal" onclick="closeThankYouModal()" class="btn-primary px-6 py-2 rounded text-white mb-2">Close</button>
+                        </div>
+                    </div>
+
+                    <!-- Follow-up Modal with Lifelike Animated Character -->
+                    <div id="followUpModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 hidden">
+                        <div class="bg-white rounded-lg shadow-lg p-8 max-w-md text-center animate-guy relative">
+                            
+                            <!-- Enhanced Character Container -->
+                            <div class="character-container">
+                                <div id="animatedCharacter" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                                    <!-- Detailed Professional Character SVG -->
+                                    <svg width="100" height="100" viewBox="0 0 100 100" fill="none" id="characterSVG">
+                                        <!-- Shadow -->
+                                        <ellipse cx="50" cy="95" rx="25" ry="3" fill="#00000020"/>
+                                        
+                                        <!-- Body -->
+                                        <rect x="40" y="50" width="20" height="35" rx="10" fill="#1e40af"/>
+                                        
+                                        <!-- Head -->
+                                        <circle cx="50" cy="35" r="15" fill="#fbbf24"/>
+                                        
+                                        <!-- Hair -->
+                                        <path d="M35 25 Q50 15 65 25 Q65 20 50 18 Q35 20 35 25" fill="#8b4513"/>
+                                        
+                                        <!-- Eyes -->
+                                        <circle cx="45" cy="32" r="2" fill="#ffffff"/>
+                                        <circle cx="55" cy="32" r="2" fill="#ffffff"/>
+                                        <circle cx="45" cy="32" r="1" fill="#000000"/>
+                                        <circle cx="55" cy="32" r="1" fill="#000000"/>
+                                        
+                                        <!-- Eyebrows -->
+                                        <path d="M42 28 L48 29" stroke="#8b4513" stroke-width="1.5" stroke-linecap="round"/>
+                                        <path d="M52 29 L58 28" stroke="#8b4513" stroke-width="1.5" stroke-linecap="round"/>
+                                        
+                                        <!-- Nose -->
+                                        <ellipse cx="50" cy="37" rx="1" ry="2" fill="#f59e0b"/>
+                                        
+                                        <!-- Mouth -->
+                                        <path d="M47 42 Q50 45 53 42" stroke="#8b4513" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                                        
+                                        <!-- Collar -->
+                                        <path d="M40 50 L45 55 L50 50 L55 55 L60 50" stroke="#ffffff" stroke-width="2" fill="none"/>
+                                        
+                                        <!-- Tie -->
+                                        <polygon points="50,50 52,70 48,70" fill="#dc2626"/>
+                                        <rect x="48" y="48" width="4" height="6" fill="#dc2626"/>
+                                        
+                                        <!-- Left Arm (dynamic) -->
+                                        <g id="leftArm">
+                                            <rect x="32" y="58" width="12" height="6" rx="3" fill="#1e40af" transform="rotate(-10 38 61)"/>
+                                            <circle cx="30" cy="61" r="4" fill="#fbbf24"/>
+                                        </g>
+                                        
+                                        <!-- Right Arm (dynamic) -->
+                                        <g id="rightArm">
+                                            <rect x="56" y="58" width="12" height="6" rx="3" fill="#1e40af" transform="rotate(10 62 61)"/>
+                                            <circle cx="70" cy="61" r="4" fill="#fbbf24"/>
+                                        </g>
+                                        
+                                        <!-- Legs -->
+                                        <rect x="44" y="82" width="5" height="12" rx="2" fill="#1f2937"/>
+                                        <rect x="51" y="82" width="5" height="12" rx="2" fill="#1f2937"/>
+                                        
+                                        <!-- Shoes -->
+                                        <ellipse cx="46.5" cy="96" rx="4" ry="2" fill="#000000"/>
+                                        <ellipse cx="53.5" cy="96" rx="4" ry="2" fill="#000000"/>
+                                        
+                                        <!-- Belt -->
+                                        <rect x="38" y="75" width="24" height="3" fill="#8b4513"/>
+                                        <rect x="48" y="74" width="4" height="5" fill="#fbbf24"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Would you like to return to the homepage or continue exploring?</h3>
+                            <p class="mb-6 text-gray-600">You can go back to the main page or keep browsing our site for more information.</p>
+                            
+                            <div class="flex justify-center gap-4">
+                                <a href="index.html" id="homepageBtn" aria-label="Go to Homepage" 
+                                   class="btn-primary px-5 py-2 rounded text-white transition-all duration-200 hover:bg-blue-700 relative z-10">
+                                   Go to Homepage
+                                </a>
+                                <button id="continueBtn" onclick="closeFollowUpModal()" 
+                                        class="px-5 py-2 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 transition-all duration-200 relative z-10">
+                                        Continue Here
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Map and Additional Info -->
+                <div class="space-y-8">
+                    <!-- Google Map -->
+                    <div class="map-container rounded-xl p-4">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Find Us</h3>
+                        <div class="w-full h-64 rounded-lg overflow-hidden">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.8083!2d36.8219!3d-1.2921!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f1b90f8b79af7%3A0x1f5a7c1e6b1a6b1a!2sNairobi%2C%20Kenya!5e0!3m2!1sen!2sus!4v1234567890123!5m2!1sen!2sus"
+                                width="100%" 
+                                height="100%" 
+                                style="border:0;" 
+                                allowfullscreen="" 
+                                loading="lazy">
+                            </iframe>
+                        </div>
+                    </div>
+
+                    <!-- Office Hours -->
+                    <div class="glass-card rounded-xl p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">
+                            <i class="fas fa-clock text-blue-500 mr-2"></i>
+                            Office Hours
+                        </h3>
+                        <div class="space-y-2 text-gray-600">
+                            <div class="flex justify-between">
+                                <span>Monday - Friday:</span>
+                                <span class="font-medium">7:30 AM - 5:00 PM</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Saturday:</span>
+                                <span class="font-medium">8:00 AM - 12:00 PM</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Sunday:</span>
+                                <span class="font-medium">Closed</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Social Media -->
+                    <div class="glass-card rounded-xl p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">
+                            <i class="fas fa-share-alt text-blue-500 mr-2"></i>
+                            Follow Us
+                        </h3>
+                        <div class="flex space-x-4">
+                            <a href="https://facebook.com/stthomasjunior" target="_blank" 
+                                class="social-icon w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="https://twitter.com/stthomasjunior" target="_blank"
+                                class="social-icon w-10 h-10 bg-blue-400 text-white rounded-full flex items-center justify-center hover:bg-blue-500">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="https://instagram.com/stthomasjunior" target="_blank"
+                                class="social-icon w-10 h-10 bg-pink-500 text-white rounded-full flex items-center justify-center hover:bg-pink-600">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://linkedin.com/company/stthomasjunior" target="_blank"
+                                class="social-icon w-10 h-10 bg-blue-700 text-white rounded-full flex items-center justify-center hover:bg-blue-800">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="col-span-2">
+                    <h3 class="text-2xl font-bold mb-4">St. Thomas Junior School</h3>
+                    <p class="text-gray-300 mb-4">
+                        Nurturing young minds with excellence in education, character development, and holistic growth.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-300 hover:text-white">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-300 hover:text-white">Home</a></li>
+                        <li><a href="about.html" class="text-gray-300 hover:text-white">About Us</a></li>
+                        <li><a href="academics.html" class="text-gray-300 hover:text-white">Academics</a></li>
+                        <li><a href="gallery.html" class="text-gray-300 hover:text-white">Gallery</a></li>
+                        <li><a href="contact.html" class="text-gray-300 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
+                    <div class="space-y-2 text-gray-300">
+                        <p><i class="fas fa-phone mr-2"></i> +254 740 833 092</p>
+                        <p><i class="fas fa-envelope mr-2"></i> info@stthomasjunior.ac.ke</p>
+                        <p><i class="fas fa-map-marker-alt mr-2"></i> Kiembeni Bamburi, Mombasa</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p class="text-gray-300">
+                    &copy; 2024 St. Thomas Junior School. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Chat Button -->
+    <a href="https://wa.me/254740833092?text=Hello%20St.%20Thomas%20Junior%20School,%20I%20would%20like%20to%20inquire%20about..." 
+       class="whatsapp-float" target="_blank" title="Chat with us on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.querySelector('.mobile-menu-button');
+        const mobileMenu = document.querySelector('.mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Advanced Character Animation System
+        class LifelikeCharacter {
+            constructor() {
+                this.character = document.getElementById('animatedCharacter');
+                this.characterSVG = document.getElementById('characterSVG');
+                this.homepageBtn = document.getElementById('homepageBtn');
+                this.continueBtn = document.getElementById('continueBtn');
+                this.isAnimating = false;
+                this.currentPosition = 'center';
+                this.init();
+            }
+
+            init() {
+                // Initial appearance and greeting
+                setTimeout(() => {
+                    this.performGreeting();
+                }, 500);
+
+                // Button interaction listeners
+                this.setupButtonListeners();
+            }
+
+            async performGreeting() {
+                // Initial bow and greeting
+                await this.bow();
+                this.showSpeechBubble("Hello! Thank you for contacting us!");
+                
+                // Wait and then point to homepage
+                setTimeout(() => {
+                    this.walkToButton('homepage');
+                }, 2000);
+            }
+
+            setupButtonListeners() {
+                this.homepageBtn.addEventListener('mouseenter', () => {
+                    if (this.currentPosition !== 'homepage') {
+                        this.walkToButton('homepage');
+                    } else {
+                        this.excitedGesture();
+                    }
+                });
+
+                this.continueBtn.addEventListener('mouseenter', () => {
+                    if (this.currentPosition !== 'continue') {
+                        this.walkToButton('continue');
+                    } else {
+                        this.excitedGesture();
+                    }
+                });
+
+                this.homepageBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    this.celebrateChoice('homepage');
+                });
+
+                this.continueBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    this.celebrateChoice('continue');
+                });
+            }
+
+            async walkToButton(target) {
+                if (this.isAnimating) return;
+                this.isAnimating = true;
+
+                // Add walking animation
+                this.character.classList.add('walking');
+                
+                // Move to button position
+                if (target === 'homepage') {
+                    this.character.style.transform = 'translateX(-80px) translateY(-10px)';
+                    this.currentPosition = 'homepage';
+                    this.homepageBtn.classList.add('button-glow');
+                    this.continueBtn.classList.remove('button-glow');
+                } else {
+                    this.character.style.transform = 'translateX(80px) translateY(-10px)';
+                    this.currentPosition = 'continue';
+                    this.continueBtn.classList.add('button-glow');
+                    this.homepageBtn.classList.remove('button-glow');
+                }
+
+                // Wait for walking animation
+                setTimeout(() => {
+                    this.character.classList.remove('walking');
+                    this.pointToButton(target);
+                    this.isAnimating = false;
+                }, 1000);
+            }
+
+            pointToButton(target) {
+                // Point to the appropriate button
+                const rightArm = this.characterSVG.querySelector('#rightArm');
+                if (target === 'homepage') {
+                    rightArm.innerHTML = `
+                        <rect x="56" y="52" width="20" height="6" rx="3" fill="#1e40af" transform="rotate(-20 66 55)"/>
+                        <circle cx="75" cy="50" r="4" fill="#fbbf24"/>
+                    `;
+                    this.character.classList.add('pointing-left');
+                } else {
+                    rightArm.innerHTML = `
+                        <rect x="56" y="52" width="20" height="6" rx="3" fill="#1e40af" transform="rotate(20 66 55)"/>
+                        <circle cx="75" cy="50" r="4" fill="#fbbf24"/>
+                    `;
+                    this.character.classList.add('pointing-right');
+                }
+
+                // Show pointing speech bubble
+                setTimeout(() => {
+                    this.showSpeechBubble(target === 'homepage' ? "How about going home?" : "Or stay and explore more!");
+                }, 200);
+            }
+
+            async bow() {
+                return new Promise(resolve => {
+                    this.character.classList.add('bowing');
+                    setTimeout(() => {
+                        this.character.classList.remove('bowing');
+                        resolve();
+                    }, 1500);
+                });
+            }
+
+            excitedGesture() {
+                this.character.classList.add('excited');
+                setTimeout(() => {
+                    this.character.classList.remove('excited');
+                }, 600);
+            }
+
+            async celebrateChoice(choice) {
+                // Perform celebration bow
+                await this.bow();
+                
+                // Show thank you popup
+                this.showThankYouPopup();
+                
+                // Execute the choice after celebration
+                setTimeout(() => {
+                    if (choice === 'homepage') {
+                        window.location.href = 'index.html';
+                    } else {
+                        closeFollowUpModal();
+                    }
+                }, 2000);
+            }
+
+            showSpeechBubble(text) {
+                // Remove existing speech bubble
+                const existingBubble = this.character.querySelector('.speech-bubble');
+                if (existingBubble) {
+                    existingBubble.remove();
+                }
+
+                // Create new speech bubble
+                const bubble = document.createElement('div');
+                bubble.className = 'speech-bubble';
+                bubble.textContent = text;
+                this.character.appendChild(bubble);
+
+                // Remove bubble after animation
+                setTimeout(() => {
+                    if (bubble.parentNode) {
+                        bubble.remove();
+                    }
+                }, 3000);
+            }
+
+            showThankYouPopup() {
+                // Remove existing popup
+                const existingPopup = this.character.querySelector('.thank-you-popup');
+                if (existingPopup) {
+                    existingPopup.remove();
+                }
+
+                // Create thank you popup
+                const popup = document.createElement('div');
+                popup.className = 'thank-you-popup';
+                popup.innerHTML = '🙏 Thank You!';
+                this.character.appendChild(popup);
+
+                // Remove popup after animation
+                setTimeout(() => {
+                    if (popup.parentNode) {
+                        popup.remove();
+                    }
+                }, 2000);
+            }
+        }
+
+        // Initialize character when modal is shown
+        let characterInstance = null;
+
+        // Form validation and AJAX submission
+        const contactForm = document.getElementById('contactForm');
+        const thankYouModal = document.getElementById('thankYouModal');
+        const followUpModal = document.getElementById('followUpModal');
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Basic validation
+            const requiredFields = this.querySelectorAll('[required]');
+            let valid = true;
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    valid = false;
+                    field.classList.add('border-red-500');
+                } else {
+                    field.classList.remove('border-red-500');
+                }
+            });
+            if (!valid) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+
+            // Email validation
+            const email = this.querySelector('#email');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email.value)) {
+                alert('Please enter a valid email address.');
+                email.classList.add('border-red-500');
+                return;
+            }
+
+            // Show loading state
+            const submitButton = this.querySelector('button[type="submit"]');
+            const originalText = submitButton.innerHTML;
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Sending...';
+            submitButton.disabled = true;
+
+            // Prepare form data
+            const formData = new FormData(contactForm);
+
+            fetch(contactForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            })
+            .then(response => {
+                submitButton.innerHTML = originalText;
+                submitButton.disabled = false;
+                if (response.ok) {
+                    contactForm.reset();
+                    showThankYouModal();
+                } else {
+                    alert('There was an error sending your message. Please try again.');
+                }
+            })
+            .catch(() => {
+                submitButton.innerHTML = originalText;
+                submitButton.disabled = false;
+                alert('There was an error sending your message. Please try again.');
+            });
+        });
+
+        function showThankYouModal() {
+            thankYouModal.classList.remove('hidden');
+        }
+
+        function closeThankYouModal() {
+            thankYouModal.classList.add('hidden');
+            showFollowUpModal();
+        }
+
+        function showFollowUpModal() {
+            followUpModal.classList.remove('hidden');
+            // Initialize the lifelike character
+            setTimeout(() => {
+                if (!characterInstance) {
+                    characterInstance = new LifelikeCharacter();
+                }
+            }, 300);
+        }
+
+        function closeFollowUpModal() {
+            followUpModal.classList.add('hidden');
+            characterInstance = null;
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to navbar
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                navbar.classList.add('shadow-lg');
+            } else {
+                navbar.classList.remove('shadow-lg');
+            }
+        });
+
+        // Add animation to contact cards on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe contact cards
+        document.querySelectorAll('.contact-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academics - St. Thomas Junior School</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        /* Glassmorphism Effects */
+        .glass {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.3);
+        }
+
+        /* Header Styles */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #3b82f6;
+        }
+
+        .nav-link.active {
+            color: #3b82f6;
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #3b82f6;
+            border-radius: 1px;
+        }
+
+        /* Program Cards */
+        .program-card {
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .program-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 60px 0 rgba(31, 38, 135, 0.3);
+        }
+
+        .program-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .program-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Curriculum Cards */
+        .curriculum-card {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .curriculum-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 45px 0 rgba(31, 38, 135, 0.3);
+        }
+
+        .curriculum-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .curriculum-card:hover::after {
+            opacity: 1;
+        }
+
+        /* Button Styles */
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .glass-card, .program-card, .curriculum-card {
+                margin-bottom: 20px;
+            }
+            
+            .program-card:hover, .curriculum-card:hover {
+                transform: translateY(-5px) scale(1.01);
+            }
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 20px;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #374151;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        @media (max-width: 768px) {
+            .desktop-nav {
+                display: none;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            text-decoration: none;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-graduation-cap text-white text-lg"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-gray-800">St. Thomas Junior School</h1>
+                        <p class="text-sm text-gray-600">Excellence in Education</p>
+                    </div>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <nav class="desktop-nav">
+                    <div class="flex space-x-8">
+                        <a href="index.html" class="nav-link text-gray-700 hover:text-blue-600 transition-colors">Home</a>
+                        <a href="about.html" class="nav-link text-gray-700 hover:text-blue-600 transition-colors">About</a>
+                        <a href="academics.html" class="nav-link active text-gray-700 hover:text-blue-600 transition-colors">Academics</a>
+                        <a href="gallery.html" class="nav-link text-gray-700 hover:text-blue-600 transition-colors">Gallery</a>
+                        <a href="contact.html" class="nav-link text-gray-700 hover:text-blue-600 transition-colors">Contact</a>
+                    </div>
+                </nav>
+
+                <!-- Mobile Hamburger -->
+                <div class="hamburger" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div class="mobile-menu" id="mobileMenu">
+                <div class="flex flex-col space-y-4">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 transition-colors">Home</a>
+                    <a href="about.html" class="text-gray-700 hover:text-blue-600 transition-colors">About</a>
+                    <a href="academics.html" class="text-blue-600 font-semibold">Academics</a>
+                    <a href="gallery.html" class="text-gray-700 hover:text-blue-600 transition-colors">Gallery</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-blue-600 transition-colors">Contact</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pt-24 pb-16">
+        <!-- Hero Section -->
+        <section class="container mx-auto px-4 py-16">
+            <div class="text-center mb-16">
+                <h1 class="text-5xl md:text-6xl font-bold text-gray-800 mb-6">
+                    Academic <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600">Excellence</span>
+                </h1>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Discover our comprehensive educational programs designed to nurture young minds and prepare students for future success through innovative learning approaches.
+                </p>
+            </div>
+        </section>
+
+        <!-- Curriculum Systems -->
+        <section class="container mx-auto px-4 py-16">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Curriculum Systems</h2>
+                <p class="text-lg text-gray-600">We offer multiple curriculum pathways to meet diverse educational needs</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                <!-- CBC System -->
+                <div class="curriculum-card p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-book-open text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">Competency Based Curriculum (CBC)</h3>
+                    </div>
+                    <p class="text-gray-600 mb-6">
+                        Our modern CBC program focuses on developing competencies and skills rather than just academic knowledge. Students engage in hands-on learning experiences that prepare them for the 21st century.
+                    </p>
+                    <div class="space-y-3">
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-check-circle text-blue-500 mr-3"></i>
+                            <span>Pre-Primary 1 & 2 (PP1 & PP2)</span>
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-check-circle text-blue-500 mr-3"></i>
+                            <span>Grade 1 to Grade 6</span>
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-check-circle text-blue-500 mr-3"></i>
+                            <span>Competency-based assessments</span>
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-check-circle text-blue-500 mr-3"></i>
+                            <span>Project-based learning</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 8-4-4 System -->
+                <div class="curriculum-card p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-graduation-cap text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">8-4-4 System</h3>
+                    </div>
+                    <p class="text-gray-600 mb-6">
+                        For parents who prefer the traditional approach, we continue to offer the proven 8-4-4 system with its structured curriculum and comprehensive subject coverage.
+                    </p>
+                    <div class="space-y-3">
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-check-circle text-purple-500 mr-3"></i>
+                            <span>Nursery & Pre-School</span>
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-check-circle text-purple-500 mr-3"></i>
+                            <span>Standard 1 to Standard 8</span>
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-check-circle text-purple-500 mr-3"></i>
+                            <span>KCPE preparation</span>
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-check-circle text-purple-500 mr-3"></i>
+                            <span>Traditional subject focus</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Class Offerings -->
+        <section class="container mx-auto px-4 py-16">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Class Offerings</h2>
+                <p class="text-lg text-gray-600">From early childhood to primary education, we cater to every stage of your child's development</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Pre-School -->
+                <div class="program-card p-6">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-pink-400 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-baby text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800">Pre-School</h3>
+                        <p class="text-sm text-gray-600">Ages 3-5</p>
+                    </div>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-star text-pink-400 mr-2"></i>
+                            <span>Play-based learning</span>
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-star text-pink-400 mr-2"></i>
+                            <span>Social skills development</span>
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-star text-pink-400 mr-2"></i>
+                            <span>Creative arts & crafts</span>
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-star text-pink-400 mr-2"></i>
+                            <span>Basic literacy & numeracy</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lower Primary -->
+                <div class="program-card p-6">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-child text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800">Lower Primary</h3>
+                        <p class="text-sm text-gray-600">Grades 1-3</p>
+                    </div>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-star text-blue-400 mr-2"></i>
+                            <span>Foundation skills</span>
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-star text-blue-400 mr-2"></i>
+                            <span>Reading & writing</span>
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-star text-blue-400 mr-2"></i>
+                            <span>Basic mathematics</span>
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-star text-blue-400 mr-2"></i>
+                            <span>Environmental activities</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upper Primary -->
+                <div class="program-card p-6">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-green-400 to-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-user-graduate text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800">Upper Primary</h3>
+                        <p class="text-sm text-gray-600">Grades 4-6</p>
+                    </div>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-star text-green-400 mr-2"></i>
+                            <span>Advanced subjects</span>
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-star text-green-400 mr-2"></i>
+                            <span>Science & technology</span>
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-star text-green-400 mr-2"></i>
+                            <span>Language proficiency</span>
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-star text-green-400 mr-2"></i>
+                            <span>Critical thinking</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Junior Secondary -->
+                <div class="program-card p-6">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-purple-400 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-microscope text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800">Junior Secondary</h3>
+                        <p class="text-sm text-gray-600">Grades 7-9</p>
+                    </div>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-star text-purple-400 mr-2"></i>
+                            <span>Specialized subjects</span>
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-star text-purple-400 mr-2"></i>
+                            <span>Laboratory work</span>
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-star text-purple-400 mr-2"></i>
+                            <span>Career guidance</span>
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-star text-purple-400 mr-2"></i>
+                            <span>Life skills</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Special Programs -->
+                <div class="program-card p-6">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-orange-400 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-palette text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800">Special Programs</h3>
+                        <p class="text-sm text-gray-600">All Ages</p>
+                    </div>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-star text-orange-400 mr-2"></i>
+                            <span>Music & arts</span>
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-star text-orange-400 mr-2"></i>
+                            <span>Sports programs</span>
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-star text-orange-400 mr-2"></i>
+                            <span>Computer literacy</span>
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-star text-orange-400 mr-2"></i>
+                            <span>Leadership training</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- After School -->
+                <div class="program-card p-6">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-teal-400 to-teal-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-clock text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800">After School</h3>
+                        <p class="text-sm text-gray-600">Extended Care</p>
+                    </div>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-star text-teal-400 mr-2"></i>
+                            <span>Homework assistance</span>
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-star text-teal-400 mr-2"></i>
+                            <span>Enrichment activities</span>
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-star text-teal-400 mr-2"></i>
+                            <span>Supervised play</span>
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-star text-teal-400 mr-2"></i>
+                            <span>Flexible scheduling</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Academic Features -->
+        <section class="container mx-auto px-4 py-16">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Academic Features</h2>
+                <p class="text-lg text-gray-600">What makes our academic programs stand out</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="glass-card p-6 text-center">
+                    <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-users text-white"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-800 mb-2">Small Class Sizes</h3>
+                    <p class="text-sm text-gray-600">Maximum 25 students per class for personalized attention</p>
+                </div>
+
+                <div class="glass-card p-6 text-center">
+                    <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-chalkboard-teacher text-white"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-800 mb-2">Qualified Teachers</h3>
+                    <p class="text-sm text-gray-600">Experienced educators with specialized training</p>
+                </div>
+
+                <div class="glass-card p-6 text-center">
+                    <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-laptop text-white"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-800 mb-2">Modern Technology</h3>
+                    <p class="text-sm text-gray-600">Smart classrooms and digital learning tools</p>
+                </div>
+
+                <div class="glass-card p-6 text-center">
+                    <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-chart-line text-white"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-800 mb-2">Progress Tracking</h3>
+                    <p class="text-sm text-gray-600">Regular assessments and parent updates</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="container mx-auto px-4 py-16">
+            <div class="glass text-center p-12 max-w-4xl mx-auto">
+                <h2 class="text-4xl font-bold text-gray-800 mb-6">Ready to Join Our Academic Community?</h2>
+                <p class="text-lg text-gray-600 mb-8">
+                    Discover how our comprehensive academic programs can help your child reach their full potential. Schedule a school tour or speak with our admissions team today.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="contact.html" class="btn-primary">Schedule a Visit</a>
+                    <a href="contact.html" class="btn-primary">Apply Now</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="glass mt-16">
+        <div class="container mx-auto px-4 py-12">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-graduation-cap text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-800">St. Thomas Junior School</h3>
+                            <p class="text-sm text-gray-600">Excellence in Education</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm">
+                        Nurturing young minds for a brighter tomorrow through quality education and character development.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-gray-800 mb-4">Quick Links</h4>
+                    <div class="space-y-2">
+                        <a href="index.html" class="block text-gray-600 hover:text-blue-600 text-sm transition-colors">Home</a>
+                        <a href="about.html" class="block text-gray-600 hover:text-blue-600 text-sm transition-colors">About Us</a>
+                        <a href="academics.html" class="block text-gray-600 hover:text-blue-600 text-sm transition-colors">Academics</a>
+                        <a href="gallery.html" class="block text-gray-600 hover:text-blue-600 text-sm transition-colors">Gallery</a>
+                        <a href="contact.html" class="block text-gray-600 hover:text-blue-600 text-sm transition-colors">Contact</a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-gray-800 mb-4">Programs</h4>
+                    <div class="space-y-2">
+                        <p class="text-gray-600 text-sm">Pre-School (PP1-PP2)</p>
+                        <p class="text-gray-600 text-sm">Primary (Grade 1-6)</p>
+                        <p class="text-gray-600 text-sm">Junior Secondary (Grade 7-9)</p>
+                        <p class="text-gray-600 text-sm">CBC & 8-4-4 Systems</p>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-gray-800 mb-4">Contact Info</h4>
+                    <div class="space-y-2">
+                        <p class="text-gray-600 text-sm">
+                            <i class="fas fa-map-marker-alt mr-2"></i>
+                            123 Education Street, Nairobi
+                        </p>
+                        <p class="text-gray-600 text-sm">
+                            <i class="fas fa-phone mr-2"></i>
+                            +254 700 123 456
+                        </p>
+                        <p class="text-gray-600 text-sm">
+                            <i class="fas fa-envelope mr-2"></i>
+                            info@stthomasjunior.ac.ke
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-200 pt-8 mt-8 text-center">
+                <p class="text-gray-600 text-sm">
+                    &copy; 2024 St. Thomas Junior School. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/254700123456?text=Hello%20St.%20Thomas%20Junior%20School!%20I%20would%20like%20to%20know%20more%20about%20your%20academic%20programs." 
+       class="whatsapp-btn" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = Math.random() * 0.3 + 's';
+                    entry.target.classList.add('animate-fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards
+        document.querySelectorAll('.program-card, .curriculum-card, .glass-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const hamburger = document.querySelector('.hamburger');
+            
+            if (!hamburger.contains(event.target) && !mobileMenu.contains(event.target)) {
+                mobileMenu.classList.remove('active');
+            }
+        });
+    </script>
+
+    <style>
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fade-in 0.6s ease-out forwards;
+        }
+    </style>
+</body>
+</html>

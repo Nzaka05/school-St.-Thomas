@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - St. Thomas Junior School</title>
+    <meta name="description" content="Learn more about St. Thomas Junior School, our mission, vision, values, and journey of excellence in education.">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: #3b82f6;
+            transform: translateX(-50%);
+        }
+        
+        .timeline-dot {
+            width: 16px;
+            height: 16px;
+            background: #3b82f6;
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            top: 24px;
+            transform: translateX(-50%);
+            z-index: 10;
+        }
+        
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-4px);
+            transition: transform 0.3s ease;
+        }
+        
+        .principal-image {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid #3b82f6;
+        }
+        
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .whatsapp-float:hover {
+            background-color: #128c7e;
+            transform: scale(1.1);
+            text-decoration: none;
+            color: white;
+        }
+        .fade-in-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: opacity 0.8s, transform 0.8s;
+        }
+        .fade-in-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: opacity 0.8s, transform 0.8s;
+        }
+        .principal-image:hover {
+            box-shadow: 0 8px 32px 0 rgba(59,130,246,0.2);
+            transform: scale(1.05);
+            transition: all 0.3s;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="text-2xl font-bold text-blue-600">
+                        <i class="fas fa-graduation-cap mr-2"></i>
+                        St. Thomas Junior School
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-600 hover:text-blue-600 transition duration-300">Home</a>
+                    <a href="about.html" class="text-blue-600 font-semibold">About Us</a>
+                    <a href="academics.html" class="text-gray-600 hover:text-blue-600 transition duration-300">Academics</a>
+                    <a href="gallery.html" class="text-gray-600 hover:text-blue-600 transition duration-300">Gallery</a>
+                    <a href="contact.html" class="text-gray-600 hover:text-blue-600 transition duration-300">Contact</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-gray-600 hover:text-blue-600">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="index.html" class="block px-3 py-2 text-gray-600 hover:text-blue-600">Home</a>
+                <a href="about.html" class="block px-3 py-2 text-blue-600 font-semibold">About Us</a>
+                <a href="academics.html" class="block px-3 py-2 text-gray-600 hover:text-blue-600">Academics</a>
+                <a href="gallery.html" class="block px-3 py-2 text-gray-600 hover:text-blue-600">Gallery</a>
+                <a href="contact.html" class="block px-3 py-2 text-gray-600 hover:text-blue-600">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white py-16">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4 fade-in">About St. Thomas Junior School</h1>
+            <p class="text-xl md:text-2xl opacity-90 fade-in">Nurturing Excellence, Building Character, Inspiring Success</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-4 py-12">
+        <!-- School Overview -->
+        <section class="mb-16 fade-in">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6">Our Story</h2>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                        Founded in 1995, St. Thomas Junior School has been a beacon of educational excellence in our community for over 25 years. What started as a small educational initiative has grown into one of the most respected primary schools in the region.
+                    </p>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                        Our journey began with a simple yet powerful vision: to provide quality education that nurtures not just academic excellence but also character development and moral values that will guide our students throughout their lives.
+                    </p>
+                    <p class="text-gray-600 leading-relaxed">
+                        Today, we continue to uphold these founding principles while embracing modern educational methodologies and technologies to prepare our students for the challenges of tomorrow.
+                    </p>
+                </div>
+                <div class="text-center">
+                    <div class="glass-effect rounded-lg p-8 hover-lift">
+                        <i class="fas fa-school text-6xl text-blue-500 mb-4"></i>
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-2">25+ Years</h3>
+                        <p class="text-gray-600">of Educational Excellence</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Add this section after "Our Story" or before "Our Journey" -->
+        <section class="mb-16 fade-in">
+            <div class="grid md:grid-cols-3 gap-8 text-center">
+                <div>
+                    <div class="text-5xl font-bold text-blue-600" id="years-count">0</div>
+                    <div class="text-gray-700 mt-2 text-lg">Years of Excellence</div>
+                </div>
+                <div>
+                    <div class="text-5xl font-bold text-blue-600" id="students-count">0</div>
+                    <div class="text-gray-700 mt-2 text-lg">Happy Students</div>
+                </div>
+                <div>
+                    <div class="text-5xl font-bold text-blue-600" id="awards-count">0</div>
+                    <div class="text-gray-700 mt-2 text-lg">Awards Won</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mission & Vision -->
+        <section class="mb-16 fade-in">
+            <h2 class="text-3xl font-bold text-gray-800 text-center mb-12">Our Mission & Vision</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="glass-effect rounded-lg p-8 hover-lift">
+                    <div class="text-center mb-6">
+                        <i class="fas fa-bullseye text-4xl text-blue-500 mb-4"></i>
+                        <h3 class="text-2xl font-semibold text-gray-800">Our Mission</h3>
+                    </div>
+                    <p class="text-gray-600 text-center leading-relaxed">
+                        To provide comprehensive, quality education that develops the intellectual, physical, social, and moral potential of every child in a nurturing Christian environment that promotes excellence and lifelong learning.
+                    </p>
+                </div>
+                <div class="glass-effect rounded-lg p-8 hover-lift">
+                    <div class="text-center mb-6">
+                        <i class="fas fa-eye text-4xl text-blue-500 mb-4"></i>
+                        <h3 class="text-2xl font-semibold text-gray-800">Our Vision</h3>
+                    </div>
+                    <p class="text-gray-600 text-center leading-relaxed">
+                        To be the leading educational institution that produces confident, creative, and responsible citizens who contribute positively to society while maintaining strong moral values and academic excellence.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Principal's Message -->
+        <section class="mb-16 fade-in">
+            <div class="bg-white rounded-lg shadow-lg p-8">
+                <h2 class="text-3xl font-bold text-gray-800 text-center mb-8">Principal's Message</h2>
+                <div class="grid md:grid-cols-3 gap-8 items-center">
+                    <div class="text-center">
+                        <img src="mrs.otieno.jpg" alt="Principal" class="principal-image mx-auto mb-4">
+                        <h3 class="text-xl font-semibold text-gray-800">Mrs. Millicent Otieno </h3>
+                        <p class="text-blue-600">School Principal</p>
+                    </div>
+                    <div class="md:col-span-2">
+                        <div class="relative">
+                            <i class="fas fa-quote-left text-4xl text-blue-200 absolute -top-4 -left-4"></i>
+                            <p class="text-gray-600 leading-relaxed mb-4 pl-8">
+                                Welcome to St. Thomas Junior School, where we believe every child is unique and deserves the opportunity to reach their full potential. Our dedicated team of educators is committed to providing a safe, nurturing, and stimulating environment where children can grow academically, socially, and morally.
+                            </p>
+                            <p class="text-gray-600 leading-relaxed mb-4 pl-8">
+                                We pride ourselves on our holistic approach to education, combining academic rigor with character development, creativity, and critical thinking skills. Our small class sizes ensure personalized attention, while our modern facilities and innovative teaching methods prepare our students for success in an ever-changing world.
+                            </p>
+                            <p class="text-gray-600 leading-relaxed pl-8">
+                                I invite you to join our school family and experience the difference that quality education, caring teachers, and a supportive community can make in your child's life.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Values -->
+        <section class="mb-16 fade-in">
+            <h2 class="text-3xl font-bold text-gray-800 text-center mb-12">Our Core Values</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="glass-effect rounded-lg p-6 text-center hover-lift">
+                    <i class="fas fa-heart text-4xl text-red-500 mb-4"></i>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Integrity</h3>
+                    <p class="text-gray-600 text-sm">We uphold honesty, truthfulness, and moral uprightness in all our actions.</p>
+                </div>
+                <div class="glass-effect rounded-lg p-6 text-center hover-lift">
+                    <i class="fas fa-star text-4xl text-yellow-500 mb-4"></i>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Excellence</h3>
+                    <p class="text-gray-600 text-sm">We strive for the highest standards in everything we do.</p>
+                </div>
+                <div class="glass-effect rounded-lg p-6 text-center hover-lift">
+                    <i class="fas fa-hands-helping text-4xl text-green-500 mb-4"></i>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Respect</h3>
+                    <p class="text-gray-600 text-sm">We value and honor the dignity of every individual.</p>
+                </div>
+                <div class="glass-effect rounded-lg p-6 text-center hover-lift">
+                    <i class="fas fa-lightbulb text-4xl text-blue-500 mb-4"></i>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Innovation</h3>
+                    <p class="text-gray-600 text-sm">We embrace creativity and new approaches to learning.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- School Motto -->
+        <section class="mb-16 fade-in">
+            <div class="bg-blue-600 text-white rounded-lg p-12 text-center">
+                <i class="fas fa-quote-left text-4xl mb-6 opacity-70"></i>
+                <h2 class="text-4xl font-bold mb-4">Our School Motto</h2>
+                <p class="text-2xl mb-6 italic">"Excellence in Education, Character in Life"</p>
+                <p class="text-lg opacity-90 max-w-3xl mx-auto">
+                    This motto encapsulates our commitment to providing not just academic excellence, but also nurturing the character and values that will guide our students throughout their lives.
+                </p>
+            </div>
+        </section>
+
+        <!-- Timeline -->
+        <section class="mb-16 fade-in">
+            <h2 class="text-3xl font-bold text-gray-800 text-center mb-12">Our Journey</h2>
+            <div class="relative max-w-4xl mx-auto">
+                <div class="timeline-item relative">
+                    <div class="timeline-dot"></div>
+                    <div class="grid md:grid-cols-2 gap-8 mb-12">
+                        <div class="md:text-right">
+                            <div class="glass-effect rounded-lg p-6 hover-lift">
+                                <h3 class="text-xl font-semibold text-gray-800 mb-2">1995 - Foundation</h3>
+                                <p class="text-gray-600">St. Thomas Junior School was established with just 50 students and 5 teachers.</p>
+                            </div>
+                        </div>
+                        <div></div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item relative">
+                    <div class="timeline-dot"></div>
+                    <div class="grid md:grid-cols-2 gap-8 mb-12">
+                        <div></div>
+                        <div>
+                            <div class="glass-effect rounded-lg p-6 hover-lift">
+                                <h3 class="text-xl font-semibold text-gray-800 mb-2">2005 - Expansion</h3>
+                                <p class="text-gray-600">Major infrastructure development and introduction of computer lab and library.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item relative">
+                    <div class="timeline-dot"></div>
+                    <div class="grid md:grid-cols-2 gap-8 mb-12">
+                        <div class="md:text-right">
+                            <div class="glass-effect rounded-lg p-6 hover-lift">
+                                <h3 class="text-xl font-semibold text-gray-800 mb-2">2015 - CBC Implementation</h3>
+                                <p class="text-gray-600">Successfully transitioned to the Competency-Based Curriculum system.</p>
+                            </div>
+                        </div>
+                        <div></div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item relative">
+                    <div class="timeline-dot"></div>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div></div>
+                        <div>
+                            <div class="glass-effect rounded-lg p-6 hover-lift">
+                                <h3 class="text-xl font-semibold text-gray-800 mb-2">2020 - Digital Learning</h3>
+                                <p class="text-gray-600">Introduced modern digital learning platforms and smart classrooms.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">
+                        <i class="fas fa-graduation-cap mr-2"></i>
+                        St. Thomas Junior School
+                    </h3>
+                    <p class="text-gray-300">Excellence in Education, Character in Life</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-300 hover:text-white transition duration-300">Home</a></li>
+                        <li><a href="about.html" class="text-gray-300 hover:text-white transition duration-300">About Us</a></li>
+                        <li><a href="academics.html" class="text-gray-300 hover:text-white transition duration-300">Academics</a></li>
+                        <li><a href="gallery.html" class="text-gray-300 hover:text-white transition duration-300">Gallery</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Contact Info</h4>
+                    <div class="space-y-2 text-gray-300">
+                        <p><i class="fas fa-phone mr-2"></i> +254 712 345 678</p>
+                        <p><i class="fas fa-envelope mr-2"></i> info@stthomas.ac.ke</p>
+                        <p><i class="fas fa-map-marker-alt mr-2"></i> Nairobi, Kenya</p>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-300 hover:text-white transition duration-300">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white transition duration-300">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white transition duration-300">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-300">
+                <p>&copy; 2024 St. Thomas Junior School. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/254740833092" class="whatsapp-float" target="_blank" title="Chat with us on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+            observer.observe(el);
+        });
+        document.querySelectorAll('.fade-in-left').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateX(-40px)';
+            observer.observe(el);
+        });
+        document.querySelectorAll('.fade-in-right').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateX(40px)';
+            observer.observe(el);
+        });
+
+        // Animated counters
+        function animateCounter(id, end, duration) {
+            const el = document.getElementById(id);
+            let start = 0;
+            const step = Math.ceil(end / (duration / 20));
+            const timer = setInterval(() => {
+                start += step;
+                if (start >= end) {
+                    el.textContent = end;
+                    clearInterval(timer);
+                } else {
+                    el.textContent = start;
+                }
+            }, 20);
+        }
+        window.addEventListener('DOMContentLoaded', () => {
+            animateCounter('years-count', 25, 1200);
+            animateCounter('students-count', 1200, 1200);
+            animateCounter('awards-count', 15, 1200);
+        });
+    </script>
+</body>
+</html>

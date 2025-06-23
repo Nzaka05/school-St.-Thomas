@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>St. Thomas Junior School - Professional Excellence in Education</title>
+    <meta name="description" content="St. Thomas Junior School - Leading educational institution committed to academic excellence, innovation, and community building in Nairobi, Kenya.">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Professional Color Palette */
+        :root {
+            --primary-navy: #1e293b;
+            --primary-blue: #0f172a;
+            --accent-gold: #d97706;
+            --accent-light: #f59e0b;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --bg-light: #f8fafc;
+            --bg-card: #ffffff;
+            --border-light: #e5e7eb;
+            --shadow-primary: rgba(15, 23, 42, 0.1);
+            --shadow-hover: rgba(15, 23, 42, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .font-display {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Professional Glass Effect */
+        .professional-glass {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-light);
+            box-shadow: 0 8px 32px var(--shadow-primary);
+        }
+
+        /* Professional Card Styling */
+        .pro-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            box-shadow: 0 4px 16px var(--shadow-primary);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .pro-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px var(--shadow-hover);
+        }
+
+        /* Professional Button Styles */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-navy) 0%, var(--primary-blue) 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 16px 32px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(15, 23, 42, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-navy);
+            border: 2px solid var(--primary-navy);
+            border-radius: 12px;
+            padding: 14px 30px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-navy);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Navigation */
+        .nav-professional {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        /* Hero Section */
+        .hero-professional {
+            background: linear-gradient(135deg, var(--primary-navy) 0%, var(--primary-blue) 80%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-professional::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse"><path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="1200" height="600" fill="url(%23grid)"/></svg>');
+            opacity: 0.5;
+        }
+
+        /* Professional Accent Colors */
+        .text-accent {
+            color: var(--accent-gold);
+        }
+
+        .bg-accent {
+            background-color: var(--accent-gold);
+        }
+
+        .border-accent {
+            border-color: var(--accent-gold);
+        }
+
+        /* Hover Effects */
+        .hover-lift:hover {
+            transform: translateY(-4px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Professional Stats */
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--accent-gold);
+            line-height: 1;
+        }
+
+        /* WhatsApp Button Professional */
+        .whatsapp-pro {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 64px;
+            height: 64px;
+            background: #25d366;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.3);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-pro:hover {
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 12px 32px rgba(37, 211, 102, 0.4);
+        }
+
+        /* Enroll Button Professional */
+        .enroll-pro {
+            position: fixed;
+            bottom: 100px;
+            right: 24px;
+            background: var(--accent-gold);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(217, 119, 6, 0.3);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .enroll-pro:hover {
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 12px 32px rgba(217, 119, 6, 0.4);
+            color: white;
+        }
+
+        /* Professional Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        /* Typography */
+        .text-display {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .stat-number {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Professional Contact Icons */
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-light));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            color: white;
+            font-size: 24px;
+        }
+
+        /* Section Spacing */
+        .section-padding {
+            padding: 80px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-professional fixed w-full z-50 py-4">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <div class="text-2xl font-bold text-primary-navy font-display flex items-center">
+                <i class="fas fa-graduation-cap mr-3 text-accent"></i>
+                <span class="text-accent">St. Thomas</span> Junior School
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="index.html" class="text-gray-700 hover:text-accent-gold transition duration-300 font-medium">Home</a>
+                <a href="about.html" class="text-gray-700 hover:text-accent-gold transition duration-300 font-medium">About</a>
+                <a href="academics.html" class="text-gray-700 hover:text-accent-gold transition duration-300 font-medium">Academics</a>
+                <a href="gallery.html" class="text-gray-700 hover:text-accent-gold transition duration-300 font-medium">Gallery</a>
+                <a href="contact.html" class="text-gray-700 hover:text-accent-gold transition duration-300 font-medium">Contact</a>
+            </div>
+            <div class="md:hidden">
+                <button class="text-gray-700 text-2xl" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="md:hidden hidden bg-white border-t border-gray-200 mt-4">
+            <div class="px-6 py-4 space-y-4">
+                <a href="index.html" class="block text-gray-700 hover:text-accent-gold font-medium">Home</a>
+                <a href="about.html" class="block text-gray-700 hover:text-accent-gold font-medium">About</a>
+                <a href="academics.html" class="block text-gray-700 hover:text-accent-gold font-medium">Academics</a>
+                <a href="gallery.html" class="block text-gray-700 hover:text-accent-gold font-medium">Gallery</a>
+                <a href="contact.html" class="block text-gray-700 hover:text-accent-gold font-medium">Contact</a>
+                <div class="pt-4 space-y-3">
+                    <button class="btn-primary w-full flex items-center justify-center">
+                        <i class="fas fa-map-marker-alt mr-2"></i>Visit Us Today
+                    </button>
+                    <button onclick="window.location.href='tel:+254700123456'" class="btn-secondary w-full flex items-center justify-center">
+                        <i class="fas fa-phone mr-2"></i>Call Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-professional min-h-screen flex items-center justify-center text-center text-white relative">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="professional-glass rounded-3xl p-12 max-w-5xl mx-auto">
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 text-display text-gray-800">
+                    <span class="text-accent">St. Thomas</span> Junior School
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 text-gray-600 font-medium">
+                    <span id="typed-text"></span>
+                </p>
+                <div class="flex flex-col md:flex-row gap-6 justify-center">
+                    <button class="btn-primary flex items-center justify-center">
+                        <i class="fas fa-map-marker-alt mr-3"></i>Visit Us Today
+                    </button>
+                    <button onclick="window.location.href='tel:+254740833092'" class="btn-secondary flex items-center justify-center">
+                        <i class="fas fa-phone mr-3"></i>Call Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Section -->
+    <section class="section-padding bg-gray-50" id="about">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-display mb-6">
+                    Why Choose <span class="text-accent">St. Thomas?</span>
+                </h2>
+                <div class="w-24 h-1 bg-accent mx-auto"></div>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Academic Excellence -->
+                <div class="pro-card p-8 text-center hover-lift">
+                    <div class="contact-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-display">Academic Excellence</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Committed to providing quality education with modern teaching methods and experienced faculty.
+                    </p>
+                </div>
+
+                <!-- Innovation -->
+                <div class="pro-card p-8 text-center hover-lift">
+                    <div class="contact-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-display">Innovation</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Embracing technology and creative learning approaches to prepare students for the future.
+                    </p>
+                </div>
+
+                <!-- Community -->
+                <div class="pro-card p-8 text-center hover-lift">
+                    <div class="contact-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-display">Community</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Building a supportive learning environment where every student feels valued and inspired.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section-padding" id="contact">
+        <div class="container mx-auto px-6">
+            <div class="professional-glass rounded-3xl p-12 max-w-5xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl md:text-5xl font-bold text-display mb-6">
+                        Get In <span class="text-accent">Touch</span>
+                    </h2>
+                    <div class="w-24 h-1 bg-accent mx-auto"></div>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8 mb-12">
+                    <!-- Phone -->
+                    <div class="text-center">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-display">Call Us</h3>
+                        <p class="text-gray-600 mb-1">+254 740833092</p>
+                        <p class="text-gray-600">+254 722442080</p>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="text-center">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-display">Email Us</h3>
+                        <p class="text-gray-600 mb-1">info@stthomasjunior.ac.ke</p>
+                        <p class="text-gray-600">admissions@stthomasjunior.ac.ke</p>
+                    </div>
+
+                    <!-- Location -->
+                    <div class="text-center">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-display">Visit Us</h3>
+                        <p class="text-gray-600 mb-1">Kiembeni, Bamburi</p>
+                        <p class="text-gray-600">Mombasa, Kenya</p>
+                    </div>
+                </div>
+
+                <!-- CTA Button -->
+                <div class="text-center">
+                    <button class="btn-primary text-lg px-12 py-4">
+                        <i class="fas fa-calendar-alt mr-3"></i>Schedule A Visit
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section class="section-padding bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8 text-center">
+                <div class="pro-card p-8">
+                    <div class="stat-number" id="students-count">0</div>
+                    <div class="text-gray-600 mt-2 text-lg font-medium">Happy Students</div>
+                </div>
+                <div class="pro-card p-8">
+                    <div class="stat-number" id="awards-count">0</div>
+                    <div class="text-gray-600 mt-2 text-lg font-medium">Awards Won</div>
+                </div>
+                <div class="pro-card p-8">
+                    <div class="stat-number" id="years-count">0</div>
+                    <div class="text-gray-600 mt-2 text-lg font-medium">Years of Excellence</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-800 text-white section-padding">
+        <div class="container mx-auto px-6 text-center">
+            <div class="text-3xl font-bold mb-4 font-display">
+                <i class="fas fa-graduation-cap mr-3 text-accent"></i>
+                <span class="text-accent">St. Thomas</span> Junior School
+            </div>
+            <p class="text-black-300 mb-8 text-lg">Shaping bright futures through quality education</p>
+            <div class="flex justify-center space-x-6 mb-8">
+                <a href="#" class="text-gray-300 hover:text-accent text-2xl transition duration-300">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="#" class="text-gray-300 hover:text-accent text-2xl transition duration-300">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="text-gray-300 hover:text-accent text-2xl transition duration-300">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="text-gray-300 hover:text-accent text-2xl transition duration-300">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
+            <p class="text-gray-400">&copy; 2024 St. Thomas Junior School. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/254740833092?text=Hello%20St.%20Thomas%20Junior%20School,%20I%20would%20like%20to%20inquire%20about..." 
+       target="_blank" class="whatsapp-pro" title="Chat with us on WhatsApp">
+        <i class="fab fa-whatsapp text-white text-2xl"></i>
+    </a>
+
+    <!-- Enroll Now Button - Updated to link to application page -->
+    <a href="application.html" target="_blank" class="enroll-pro" title="Apply for Admission">
+        <i class="fas fa-user-plus mr-2"></i>Enroll Now
+    </a>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navigation scroll effect
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(255, 255, 255, 0.98)';
+                nav.style.boxShadow = '0 4px 16px rgba(15, 23, 42, 0.1)';
+            } else {
+                nav.style.background = 'rgba(255, 255, 255, 0.98)';
+                nav.style.boxShadow = 'none';
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,  
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards
+        document.querySelectorAll('.pro-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+            observer.observe(card);
+        });
+
+        // Typing effect for hero section
+        const phrases = [
+            "Nurturing Tomorrow's Leaders with Excellence and Innovation",
+            "Empowering Students for a Brighter Future",
+            "Where Learning Meets Inspiration and Growth"
+        ];
+        let phraseIndex = 0, letterIndex = 0, typing = true;
+        const typedText = document.getElementById('typed-text');
+
+        function typeLoop() {
+            if (!typedText) return;
+            if (typing) {
+                if (letterIndex < phrases[phraseIndex].length) {
+                    typedText.textContent += phrases[phraseIndex][letterIndex++];
+                    setTimeout(typeLoop, 60);
+                } else {
+                    typing = false;
+                    setTimeout(typeLoop, 2000);
+                }
+            } else {
+                if (letterIndex > 0) {
+                    typedText.textContent = phrases[phraseIndex].slice(0, --letterIndex);
+                    setTimeout(typeLoop, 30);
+                } else {
+                    typing = true;
+                    phraseIndex = (phraseIndex + 1) % phrases.length;
+                    setTimeout(typeLoop, 500);
+                }
+            }
+        }
+        typeLoop();
+
+        // Animated counters
+        function animateCounter(id, end, duration) {
+            const el = document.getElementById(id);
+            if (!el) return;
+            let start = 0;
+            const step = Math.ceil(end / (duration / 30));
+            const timer = setInterval(() => {
+                start += step;
+                if (start >= end) {
+                    el.textContent = end + '+';
+                    clearInterval(timer);
+                } else {
+                    el.textContent = start + '+';
+                }
+            }, 30);
+        }
+
+        // Start counters when in view
+        const statsObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter('students-count', 1200, 2000);
+                    animateCounter('awards-count', 15, 1500);
+                    animateCounter('years-count', 10, 1000);
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        const statsSection = document.querySelector('#students-count').closest('section');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('mobileMenu');
+            const menuButton = event.target.closest('button');
+            
+            if (!menu.contains(event.target) && !menuButton) {
+                menu.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

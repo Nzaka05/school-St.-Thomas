@@ -1,0 +1,1843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>St. Thomas Junior School - Student Application Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <style>
+        * {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        .form-step {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        .form-step.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .progress-bar {
+            background: linear-gradient(to right, #6366f1 0%, #6366f1 var(--progress), #e5e7eb var(--progress), #e5e7eb 100%);
+            border-radius: 50px;
+            height: 8px;
+            transition: all 0.6s ease;
+        }
+        
+        .dark .progress-bar {
+            background: linear-gradient(to right, #6366f1 0%, #6366f1 var(--progress), #374151 var(--progress), #374151 100%);
+        }
+        
+        /* Enhanced Progress Bar Container with Advanced Scroll Animation */
+        .progress-container {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(0);
+            opacity: 1;
+            position: sticky;
+            top: 0;
+            z-index: 40;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+        }
+        
+        .dark .progress-container {
+            background: rgba(17, 24, 39, 0.95);
+            border-bottom: 1px solid rgba(75, 85, 99, 0.5);
+        }
+        
+        /* Hide progress bar when scrolling down */
+        .progress-container.scroll-hide {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+        
+        /* Show progress bar when scrolling up */
+        .progress-container.scroll-show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        /* Enhanced shadow when scrolling */
+        .progress-container.scrolled {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .dark .progress-container.scrolled {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Animated Number Counter */
+        @keyframes countUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .number-animate {
+            animation: countUp 0.5s ease-out;
+            display: inline-block;
+        }
+        
+        .school-header {
+            background: linear-gradient(135deg, #1e1b4b 0%, #3730a3 50%, #6366f1 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .dark .school-header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+        }
+        
+        .school-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="20" cy="80" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 14px 0 rgba(99, 102, 241, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px 0 rgba(99, 102, 241, 0.4);
+            background: linear-gradient(135deg, #5b5bf6 0%, #7c3aed 100%);
+        }
+        
+        .btn-secondary {
+            background: white;
+            border: 2px solid #e5e7eb;
+            transition: all 0.3s ease;
+        }
+        
+        .dark .btn-secondary {
+            background: #374151;
+            border: 2px solid #4b5563;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            border-color: #6366f1;
+            background: #f8fafc;
+            transform: translateY(-1px);
+        }
+        
+        .dark .btn-secondary:hover {
+            border-color: #6366f1;
+            background: #4b5563;
+            transform: translateY(-1px);
+        }
+        
+        .form-container {
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        
+        .dark .form-container {
+            background: #1f2937;
+            border: 1px solid rgba(75, 85, 99, 0.8);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Enhanced Step Indicator with Animation */
+        .step-indicator {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid #e5e7eb;
+            background: white;
+            position: relative;
+            opacity: 0;
+            transform: scale(0.8);
+            animation-fill-mode: forwards;
+        }
+        
+        .dark .step-indicator {
+            border: 2px solid #4b5563;
+            background: #374151;
+            color: white;
+        }
+        
+        .step-indicator.animate-in {
+            animation: stepIndicatorIn 0.6s ease-out forwards;
+        }
+        
+        @keyframes stepIndicatorIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) translateY(10px);
+            }
+            50% {
+                opacity: 0.7;
+                transform: scale(1.1) translateY(-5px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        
+        .step-indicator.completed {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            border-color: #10b981;
+            transform: scale(1.1);
+            animation: completedPulse 0.6s ease-out;
+        }
+        
+        @keyframes completedPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0.3); }
+            100% { transform: scale(1.1); box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1); }
+        }
+        
+        .step-indicator.active {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: white;
+            border-color: #6366f1;
+            transform: scale(1.15);
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+            animation: activePulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes activePulse {
+            0%, 100% { box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2); }
+            50% { box-shadow: 0 0 0 8px rgba(99, 102, 241, 0.4); }
+        }
+        
+        .form-input {
+            transition: all 0.3s ease;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 14px 16px;
+            font-size: 16px;
+            background: #fafbfc;
+        }
+        
+        .dark .form-input {
+            border: 2px solid #4b5563;
+            background: #374151;
+            color: white;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #6366f1;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+            transform: translateY(-1px);
+        }
+        
+        .dark .form-input:focus {
+            background: #4b5563;
+            color: white;
+        }
+        
+        .form-input:hover {
+            border-color: #d1d5db;
+            background: white;
+        }
+        
+        .dark .form-input:hover {
+            border-color: #6b7280;
+            background: #4b5563;
+        }
+        
+        .form-label {
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .dark .form-label {
+            color: #d1d5db;
+        }
+        
+        .section-header {
+            position: relative;
+            padding-bottom: 16px;
+            margin-bottom: 32px;
+        }
+        
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            border-radius: 2px;
+        }
+        
+        .radio-card {
+            border: 2px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            background: #fafbfc;
+        }
+        
+        .dark .radio-card {
+            border: 2px solid #4b5563;
+            background: #374151;
+        }
+        
+        .radio-card:hover {
+            border-color: #6366f1;
+            background: #f8fafc;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .dark .radio-card:hover {
+            border-color: #6366f1;
+            background: #4b5563;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .radio-card.selected {
+            border-color: #6366f1;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+        }
+        
+        .dark .radio-card.selected {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%);
+        }
+        
+        .alert {
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid;
+        }
+        
+        .alert-info {
+            background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%);
+            border-color: #93c5fd;
+            color: #1e40af;
+        }
+        
+        .dark .alert-info {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(99, 102, 241, 0.2) 100%);
+            border-color: #3b82f6;
+            color: #93c5fd;
+        }
+        
+        .alert-success {
+            background: linear-gradient(135deg, #d1fae5 0%, #dcfce7 100%);
+            border-color: #86efac;
+            color: #166534;
+        }
+        
+        .dark .alert-success {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.2) 0%, rgba(16, 185, 129, 0.2) 100%);
+            border-color: #22c55e;
+            color: #86efac;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .dark .card {
+            background: #374151;
+            border: 1px solid #4b5563;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .grid-responsive {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        
+        .checkbox-custom {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #d1d5db;
+            border-radius: 4px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .dark .checkbox-custom {
+            border: 2px solid #6b7280;
+        }
+        
+        .checkbox-custom:checked {
+            background: #6366f1;
+            border-color: #6366f1;
+        }
+        
+        .checkbox-custom:checked::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .spinner {
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .floating-elements::before,
+        .floating-elements::after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 15s ease-in-out infinite;
+        }
+        
+        .floating-elements::before {
+            top: 10%;
+            right: 10%;
+            animation-delay: 0s;
+        }
+        
+        .floating-elements::after {
+            bottom: 10%;
+            left: 10%;
+            animation-delay: 7s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        
+        .step-content {
+            min-height: 400px;
+        }
+        
+        /* Enhanced animations for better user experience */
+        .slide-up {
+            animation: slideUp 0.5s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Dark Mode Toggle Styles */
+        .dark-mode-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 2px solid #e5e7eb;
+            border-radius: 50px;
+            padding: 12px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .dark .dark-mode-toggle {
+            background: rgba(31, 41, 55, 0.9);
+            border: 2px solid #4b5563;
+            color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .dark-mode-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .dark .dark-mode-toggle:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .toggle-icon {
+            margin-right: 8px;
+            transition: transform 0.3s ease;
+        }
+        
+        .dark-mode-toggle:hover .toggle-icon {
+            transform: rotate(180deg);
+        }
+        
+        /* Dark mode background gradients */
+        .dark {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+        }
+        
+        @media print {
+            .form-step {
+                display: block !important;
+                page-break-inside: avoid;
+            }
+            .btn-primary, .btn-secondary, .dark-mode-toggle {
+                display: none;
+            }
+            .school-header {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .progress-container {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-50 to-blue-50 dark:from-gray-900 dark:via-slate-900 dark:to-slate-800 min-h-screen transition-colors duration-300">
+    <!-- Dark Mode Toggle -->
+    <div class="dark-mode-toggle" onclick="toggleDarkMode()">
+        <i class="fas fa-moon toggle-icon dark:hidden"></i>
+        <i class="fas fa-sun toggle-icon hidden dark:inline"></i>
+        <span class="font-medium dark:hidden">Dark Mode</span>
+        <span class="font-medium hidden dark:inline">Light Mode</span>
+    </div>
+
+    <!-- Back to Homepage Button -->
+    <div class="bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm shadow-sm border-b border-gray-200/50 dark:border-gray-700/50 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <button onclick="goToHomepage()" class="flex items-center text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 transition-all duration-200 font-medium group">
+                <i class="fas fa-arrow-left mr-3 group-hover:-translate-x-1 transition-transform duration-200"></i>
+                <span>Back to Homepage</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <div class="school-header text-white py-16 relative">
+        <div class="floating-elements"></div>
+        <div class="max-w-5xl mx-auto px-6 text-center relative z-10">
+            <div class="mb-6">
+                <i class="fas fa-graduation-cap text-6xl mb-4 opacity-90"></i>
+            </div>
+            <h1 class="text-5xl font-bold mb-4 tracking-tight">St. Thomas Junior School</h1>
+            <p class="text-xl opacity-90 mb-2">Student Application Form</p>
+            <p class="text-lg opacity-75">Academic Year 2024/2025</p>
+            <div class="mt-6 flex items-center justify-center text-sm opacity-80">
+                <i class="fas fa-map-marker-alt mr-3"></i>
+                <span>Bamburi Kiembeni, Mombasa</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Progress Bar with Advanced Scroll Behavior -->
+    <div class="progress-container">
+        <div class="max-w-5xl mx-auto px-6 py-8">
+            <div class="flex justify-between items-center mb-6">
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200">Application Progress</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Step <span id="current-step" class="font-medium text-indigo-600 dark:text-indigo-400">1</span> of 9</p>
+                </div>
+                <div class="text-right">
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Completion</p>
+                    <p class="text-lg font-bold text-indigo-600 dark:text-indigo-400"><span id="progress-percentage">11</span>%</p>
+                </div>
+            </div>
+            <div class="progress-bar" style="--progress: 11.11%;"></div>
+            
+            <!-- Enhanced Step Indicators with Animation -->
+            <div class="flex justify-between mt-8">
+                <div class="step-indicator animate-in w-12 h-12 rounded-full flex items-center justify-center font-semibold text-sm" style="animation-delay: 0.1s">1</div>
+                <div class="step-indicator w-12 h-12 rounded-full flex items-center justify-center font-semibold text-sm" style="animation-delay: 0.2s">2</div>
+                <div class="step-indicator w-12 h-12 rounded-full flex items-center justify-center font-semibold text-sm" style="animation-delay: 0.3s">3</div>
+                <div class="step-indicator w-12 h-12 rounded-full flex items-center justify-center font-semibold text-sm" style="animation-delay: 0.4s">4</div>
+                <div class="step-indicator w-12 h-12 rounded-full flex items-center justify-center font-semibold text-sm" style="animation-delay: 0.5s">5</div>
+                <div class="step-indicator w-12 h-12 rounded-full flex items-center justify-center font-semibold text-sm" style="animation-delay: 0.6s">6</div>
+                <div class="step-indicator w-12 h-12 rounded-full flex items-center justify-center font-semibold text-sm" style="animation-delay: 0.7s">7</div>
+                <div class="step-indicator w-12 h-12 rounded-full flex items-center justify-center font-semibold text-sm" style="animation-delay: 0.8s">8</div>
+                <div class="step-indicator w-12 h-12 rounded-full flex items-center justify-center font-semibold text-sm" style="animation-delay: 0.9s">9</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Form Container -->
+    <div class="max-w-5xl mx-auto px-6 py-12">
+        <div class="form-container p-10">
+            <form id="applicationForm">
+                
+                <!-- Step 1: Student Information -->
+                <div class="form-step active step-content" id="step-1">
+                    <div class="section-header">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-user text-indigo-600 dark:text-indigo-400 text-lg"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-200">Student Information</h2>
+                                <p class="text-gray-600 dark:text-gray-400 mt-1">Tell us about the student applying for admission</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid-responsive">
+                        <div>
+                            <label class="form-label block">First Name *</label>
+                            <input type="text" id="firstName" name="firstName" required class="form-input w-full" placeholder="Enter first name">
+                        </div>
+                        <div>
+                            <label class="form-label block">Middle Name</label>
+                            <input type="text" id="middleName" name="middleName" class="form-input w-full" placeholder="Enter middle name (optional)">
+                        </div>
+                        <div>
+                            <label class="form-label block">Last Name *</label>
+                            <input type="text" id="lastName" name="lastName" required class="form-input w-full" placeholder="Enter last name">
+                        </div>
+                        <div>
+                            <label class="form-label block">Date of Birth *</label>
+                            <input type="date" id="dateOfBirth" name="dateOfBirth" required class="form-input w-full">
+                        </div>
+                        <div>
+                            <label class="form-label block">Gender *</label>
+                            <select id="gender" name="gender" required class="form-input w-full">
+                                <option value="">Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="form-label block">Nationality *</label>
+                            <select id="nationality" name="nationality" required class="form-input w-full">
+                                <option value="">Select Nationality</option>
+                                <option value="Kenyan">Kenyan</option>
+                                <option value="Tanzanian">Tanzanian</option>
+                                <option value="Ugandan">Ugandan</option>
+                                <option value="Ethiopian">Ethiopian</option>
+                                <option value="Somali">Somali</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="form-label block">Religion</label>
+                            <select id="religion" name="religion" class="form-input w-full">
+                                <option value="">Select Religion</option>
+                                <option value="Christianity">Christianity</option>
+                                <option value="Islam">Islam</option>
+                                <option value="Hinduism">Hinduism</option>
+                                <option value="Buddhism">Buddhism</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mt-12 flex justify-end">
+                        <button type="button" onclick="nextStep()" class="btn-primary px-8 py-4 text-white rounded-full font-semibold text-lg">
+                            Continue to Address <i class="fas fa-arrow-right ml-3"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Address Information -->
+                <div class="form-step step-content" id="step-2">
+                    <div class="section-header">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-home text-indigo-600 dark:text-indigo-400 text-lg"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-200">Address Information</h2>
+                                <p class="text-gray-600 dark:text-gray-400 mt-1">Provide the student's current residence details</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div>
+                            <label class="form-label block">Home Address *</label>
+                            <input type="text" id="homeAddress" name="homeAddress" required class="form-input w-full" placeholder="Enter complete home address">
+                        </div>
+                        <div class="grid-responsive">
+                            <div>
+                                <label class="form-label block">City *</label>
+                                <input type="text" id="city" name="city" required class="form-input w-full" placeholder="Enter city">
+                            </div>
+                            <div>
+                                <label class="form-label block">County *</label>
+                                <input type="text" id="county" name="county" required class="form-input w-full" placeholder="Enter county">
+                            </div>
+                            <div>
+                                <label class="form-label block">Postal Code</label>
+                                <input type="text" id="postalCode" name="postalCode" class="form-input w-full" placeholder="Enter postal code">
+                            </div>
+                            <div>
+                                <label class="form-label block">Country</label>
+                                <input type="text" id="country" name="country" class="form-input w-full" value="Kenya" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-12 flex justify-between">
+                        <button type="button" onclick="prevStep()" class="btn-secondary px-8 py-4 text-gray-700 dark:text-gray-200 rounded-full font-semibold">
+                            <i class="fas fa-arrow-left mr-3"></i> Previous
+                        </button>
+                        <button type="button" onclick="nextStep()" class="btn-primary px-8 py-4 text-white rounded-full font-semibold">
+                            Continue to Family Info <i class="fas fa-arrow-right ml-3"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Parent/Guardian Selection -->
+                <div class="form-step step-content" id="step-3">
+                    <div class="section-header">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-users text-indigo-600 dark:text-indigo-400 text-lg"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-200">Family Information</h2>
+                                <p class="text-gray-600 dark:text-gray-400 mt-1">Select the family structure that best describes your situation</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="radio-card" onclick="selectRadio('both')">
+                            <label class="flex items-center space-x-4 cursor-pointer">
+                                <input type="radio" name="parentStatus" value="both" class="w-5 h-5 text-indigo-600" onchange="handleFamilyStatusChange()">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-heart text-green-600 dark:text-green-400"></i>
+                                    </div>
+                                    <div>
+                                        <span class="text-xl font-semibold text-gray-800 dark:text-gray-200">Both parents are alive</span>
+                                        <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">We'll collect information for both mother and father</p>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        
+                        <div class="radio-card" onclick="selectRadio('single')">
+                            <label class="flex items-center space-x-4 cursor-pointer">
+                                <input type="radio" name="parentStatus" value="single" class="w-5 h-5 text-indigo-600" onchange="handleFamilyStatusChange()">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-user text-blue-600 dark:text-blue-400"></i>
+                                    </div>
+                                    <div>
+                                        <span class="text-xl font-semibold text-gray-800 dark:text-gray-200">Single parent</span>
+                                        <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Only one parent is available or involved</p>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        
+                        <div class="radio-card" onclick="selectRadio('guardian')">
+                            <label class="flex items-center space-x-4 cursor-pointer">
+                                <input type="radio" name="parentStatus" value="guardian" class="w-5 h-5 text-indigo-600" onchange="handleFamilyStatusChange()">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-hands-helping text-purple-600 dark:text-purple-400"></i>
+                                    </div>
+                                    <div>
+                                        <span class="text-xl font-semibold text-gray-800 dark:text-gray-200">Guardian</span>
+                                        <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Student is under the care of a legal guardian</p>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Single Parent Selection -->
+                    <div id="single-parent-selection" class="hidden mt-8 p-6 bg-amber-50 dark:bg-amber-900/20 border-2 border-amber-200 dark:border-amber-700 rounded-2xl">
+                        <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4 flex items-center">
+                            <i class="fas fa-info-circle text-amber-600 dark:text-amber-400 mr-2"></i>
+                            Which parent will be the primary contact?
+                        </h3>
+                        <div class="space-y-4">
+                            <label class="flex items-center space-x-3 cursor-pointer p-3 rounded-lg hover:bg-amber-100 dark:hover:bg-amber-900/30 transition-colors">
+                                <input type="radio" name="singleParentType" value="father" class="w-4 h-4 text-indigo-600">
+                                <span class="font-medium text-gray-800 dark:text-gray-200">Father only</span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer p-3 rounded-lg hover:bg-amber-100 dark:hover:bg-amber-900/30 transition-colors">
+                                <input type="radio" name="singleParentType" value="mother" class="w-4 h-4 text-indigo-600">
+                                <span class="font-medium text-gray-800 dark:text-gray-200">Mother only</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="mt-12 flex justify-between">
+                        <button type="button" onclick="prevStep()" class="btn-secondary px-8 py-4 text-gray-700 dark:text-gray-200 rounded-full font-semibold">
+                            <i class="fas fa-arrow-left mr-3"></i> Previous
+                        </button>
+                        <button type="button" onclick="nextStep()" class="btn-primary px-8 py-4 text-white rounded-full font-semibold">
+                            Continue <i class="fas fa-arrow-right ml-3"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 4: Father Information -->
+                <div class="form-step step-content" id="step-4">
+                    <div class="section-header">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-user-tie text-blue-600 dark:text-blue-400 text-lg"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-200">Father's Information</h2>
+                                <p class="text-gray-600 dark:text-gray-400 mt-1">Please provide detailed information about the father</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid-responsive">
+                        <div>
+                            <label class="form-label block">Full Name *</label>
+                            <input type="text" id="fatherName" name="fatherName" class="form-input w-full" placeholder="Enter father's full name">
+                        </div>
+                        <div>
+                            <label class="form-label block">Email Address *</label>
+                            <input type="email" id="fatherEmail" name="fatherEmail" class="form-input w-full" placeholder="Enter email address">
+                        </div>
+                        <div>
+                            <label class="form-label block">Phone Number *</label>
+                            <input type="tel" id="fatherPhone" name="fatherPhone" class="form-input w-full" placeholder="+254 7XX XXX XXX">
+                        </div>
+                        <div>
+                            <label class="form-label block">Occupation</label>
+                            <input type="text" id="fatherOccupation" name="fatherOccupation" class="form-input w-full" placeholder="Enter occupation">
+                        </div>
+                        <div>
+                            <label class="form-label block">Employer</label>
+                            <input type="text" id="fatherEmployer" name="fatherEmployer" class="form-input w-full" placeholder="Enter employer name">
+                        </div>
+                    </div>
+
+                    <div class="mt-12 flex justify-between">
+                        <button type="button" onclick="prevStep()" class="btn-secondary px-8 py-4 text-gray-700 dark:text-gray-200 rounded-full font-semibold">
+                            <i class="fas fa-arrow-left mr-3"></i> Previous
+                        </button>
+                        <button type="button" onclick="nextStep()" class="btn-primary px-8 py-4 text-white rounded-full font-semibold">
+                            Continue <i class="fas fa-arrow-right ml-3"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 5: Mother Information -->
+                <div class="form-step step-content" id="step-5">
+                    <div class="section-header">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-pink-100 dark:bg-pink-900 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-female text-pink-600 dark:text-pink-400 text-lg"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-200">Mother's Information</h2>
+                                <p class="text-gray-600 dark:text-gray-400 mt-1">Please provide detailed information about the mother</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid-responsive">
+                        <div>
+                            <label class="form-label block">Full Name *</label>
+                            <input type="text" id="motherName" name="motherName" class="form-input w-full" placeholder="Enter mother's full name">
+                        </div>
+                        <div>
+                            <label class="form-label block">Email Address *</label>
+                            <input type="email" id="motherEmail" name="motherEmail" class="form-input w-full" placeholder="Enter email address">
+                        </div>
+                        <div>
+                            <label class="form-label block">Phone Number *</label>
+                            <input type="tel" id="motherPhone" name="motherPhone" class="form-input w-full" placeholder="+254 7XX XXX XXX">
+                        </div>
+                        <div>
+                            <label class="form-label block">Occupation</label>
+                            <input type="text" id="motherOccupation" name="motherOccupation" class="form-input w-full" placeholder="Enter occupation">
+                        </div>
+                        <div>
+                            <label class="form-label block">Employer</label>
+                            <input type="text" id="motherEmployer" name="motherEmployer" class="form-input w-full" placeholder="Enter employer name">
+                        </div>
+                    </div>
+
+                    <div class="mt-12 flex justify-between">
+                        <button type="button" onclick="prevStep()" class="btn-secondary px-8 py-4 text-gray-700 dark:text-gray-200 rounded-full font-semibold">
+                            <i class="fas fa-arrow-left mr-3"></i> Previous
+                        </button>
+                        <button type="button" onclick="nextStep()" class="btn-primary px-8 py-4 text-white rounded-full font-semibold">
+                            Continue <i class="fas fa-arrow-right ml-3"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 6: Guardian Information -->
+                <div class="form-step step-content" id="step-6">
+                    <div class="section-header">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-hands-helping text-purple-600 dark:text-purple-400 text-lg"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-200">Guardian Information</h2>
+                                <p class="text-gray-600 dark:text-gray-400 mt-1">Please provide detailed information about the legal guardian</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid-responsive">
+                        <div>
+                            <label class="form-label block">Full Name *</label>
+                            <input type="text" id="guardianName" name="guardianName" class="form-input w-full" placeholder="Enter guardian's full name">
+                        </div>
+                        <div>
+                            <label class="form-label block">Relationship to Student *</label>
+                            <select id="guardianRelationship" name="guardianRelationship" class="form-input w-full">
+                                <option value="">Select Relationship</option>
+                                <option value="grandmother">Grandmother</option>
+                                <option value="grandfather">Grandfather</option>
+                                <option value="aunt">Aunt</option>
+                                <option value="uncle">Uncle</option>
+                                <option value="sister">Sister</option>
+                                <option value="brother">Brother</option>
+                                <option value="family-friend">Family Friend</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="form-label block">Email Address *</label>
+                            <input type="email" id="guardianEmail" name="guardianEmail" class="form-input w-full" placeholder="Enter email address">
+                        </div>
+                        <div>
+                            <label class="form-label block">Phone Number *</label>
+                            <input type="tel" id="guardianPhone" name="guardianPhone" class="form-input w-full" placeholder="+254 7XX XXX XXX">
+                        </div>
+                        <div>
+                            <label class="form-label block">Occupation</label>
+                            <input type="text" id="guardianOccupation" name="guardianOccupation" class="form-input w-full" placeholder="Enter occupation">
+                        </div>
+                        <div>
+                            <label class="form-label block">Employer</label>
+                            <input type="text" id="guardianEmployer" name="guardianEmployer" class="form-input w-full" placeholder="Enter employer name">
+                        </div>
+                    </div>
+
+                    <div class="mt-12 flex justify-between">
+                        <button type="button" onclick="prevStep()" class="btn-secondary px-8 py-4 text-gray-700 dark:text-gray-200 rounded-full font-semibold">
+                            <i class="fas fa-arrow-left mr-3"></i> Previous
+                        </button>
+                        <button type="button" onclick="nextStep()" class="btn-primary px-8 py-4 text-white rounded-full font-semibold">
+                            Continue to Academics <i class="fas fa-arrow-right ml-3"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 7: Academic Information -->
+                <div class="form-step step-content" id="step-7">
+                    <div class="section-header">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-book text-green-600 dark:text-green-400 text-lg"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-200">Academic Information</h2>
+                                <p class="text-gray-600 dark:text-gray-400 mt-1">Tell us about the student's educational background</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid-responsive">
+                        <div>
+                            <label class="form-label block">Grade/Class Applying For *</label>
+                            <select id="gradeApplying" name="gradeApplying" required class="form-input w-full">
+                                <option value="">Select Grade</option>
+                                <option value="nursery">Nursery</option>
+                                <option value="pre-primary-1">Pre-Primary 1</option>
+                                <option value="pre-primary-2">Pre-Primary 2</option>
+                                <option value="grade-1">Grade 1</option>
+                                <option value="grade-2">Grade 2</option>
+                                <option value="grade-3">Grade 3</option>
+                                <option value="grade-4">Grade 4</option>
+                                <option value="grade-5">Grade 5</option>
+                                <option value="grade-6">Grade 6</option>
+                                <option value="grade-7">Grade 7</option>
+                                <option value="grade-8">Grade 8</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="form-label block">Previous School</label>
+                            <input type="text" id="previousSchool" name="previousSchool" class="form-input w-full" placeholder="Enter previous school name">
+                        </div>
+                        <div>
+                            <label class="form-label block">Previous School Address</label>
+                            <input type="text" id="previousSchoolAddress" name="previousSchoolAddress" class="form-input w-full" placeholder="Enter previous school address">
+                        </div>
+                        <div>
+                            <label class="form-label block">Previous Class/Grade</label>
+                            <input type="text" id="previousClass" name="previousClass" class="form-input w-full" placeholder="Enter previous grade/class">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="form-label block">Reason for Leaving Previous School</label>
+                            <input type="text" id="reasonForLeaving" name="reasonForLeaving" class="form-input w-full" placeholder="Optional: Brief reason for school change">
+                        </div>
+                    </div>
+
+                    <div class="mt-12 flex justify-between">
+                        <button type="button" onclick="prevStep()" class="btn-secondary px-8 py-4 text-gray-700 dark:text-gray-200 rounded-full font-semibold">
+                            <i class="fas fa-arrow-left mr-3"></i> Previous
+                        </button>
+                        <button type="button" onclick="nextStep()" class="btn-primary px-8 py-4 text-white rounded-full font-semibold">
+                            Continue to Health Info <i class="fas fa-arrow-right ml-3"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 8: Health Information -->
+                <div class="form-step step-content" id="step-8">
+                    <div class="section-header">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-red-100 dark:bg-red-900 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-heartbeat text-red-600 dark:text-red-400 text-lg"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-200">Health Information</h2>
+                                <p class="text-gray-600 dark:text-gray-400 mt-1">Important medical information to ensure student safety</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div>
+                            <label class="form-label block">Medical Conditions</label>
+                            <textarea id="medicalConditions" name="medicalConditions" rows="4" class="form-input w-full" placeholder="Please list any medical conditions the student has (e.g., asthma, diabetes, heart conditions). Write 'None' if no conditions."></textarea>
+                        </div>
+                        <div>
+                            <label class="form-label block">Allergies</label>
+                            <textarea id="allergies" name="allergies" rows="4" class="form-input w-full" placeholder="Please list any allergies (food, medication, environmental). Write 'None' if no allergies."></textarea>
+                        </div>
+                        <div>
+                            <label class="form-label block">Current Medications</label>
+                            <textarea id="medications" name="medications" rows="4" class="form-input w-full" placeholder="Please list any medications the student takes regularly. Write 'None' if no medications."></textarea>
+                        </div>
+                        <div>
+                            <label class="form-label block">Special Needs or Learning Difficulties</label>
+                            <textarea id="specialNeeds" name="specialNeeds" rows="4" class="form-input w-full" placeholder="Please describe any special educational needs, learning difficulties, or accommodations required. Write 'None' if no special needs."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="mt-12 flex justify-between">
+                        <button type="button" onclick="prevStep()" class="btn-secondary px-8 py-4 text-gray-700 dark:text-gray-200 rounded-full font-semibold">
+                            <i class="fas fa-arrow-left mr-3"></i> Previous
+                        </button>
+                        <button type="button" onclick="nextStep()" class="btn-primary px-8 py-4 text-white rounded-full font-semibold">
+                            Final Step <i class="fas fa-arrow-right ml-3"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 9: Declaration and Submit -->
+                <div class="form-step step-content" id="step-9">
+                    <div class="section-header">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-amber-100 dark:bg-amber-900 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-file-contract text-amber-600 dark:text-amber-400 text-lg"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-200">Final Details & Submission</h2>
+                                <p class="text-gray-600 dark:text-gray-400 mt-1">Complete the emergency contact information and review your application</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Emergency Contact -->
+                    <div class="card mb-8">
+                        <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-6 flex items-center">
+                            <i class="fas fa-phone text-red-500 mr-3"></i>
+                            Emergency Contact Information
+                        </h3>
+                        <div class="grid-responsive">
+                            <div>
+                                <label class="form-label block">Emergency Contact Name *</label>
+                                <input type="text" id="emergencyContactName" name="emergencyContactName" required class="form-input w-full" placeholder="Enter emergency contact name">
+                            </div>
+                            <div>
+                                <label class="form-label block">Emergency Contact Phone *</label>
+                                <input type="tel" id="emergencyContactPhone" name="emergencyContactPhone" required class="form-input w-full" placeholder="+254 7XX XXX XXX">
+                            </div>
+                            <div>
+                                <label class="form-label block">Relationship to Student *</label>
+                                <input type="text" id="emergencyRelationship" name="emergencyRelationship" required class="form-input w-full" placeholder="e.g., Aunt, Uncle, Grandmother">
+                            </div>
+                            <div>
+                                <label class="form-label block">How did you hear about our school?</label>
+                                <select id="howHeard" name="howHeard" class="form-input w-full">
+                                    <option value="">Select an option</option>
+                                    <option value="friend-family">Friend/Family Recommendation</option>
+                                    <option value="online-search">Online Search</option>
+                                    <option value="social-media">Social Media</option>
+                                    <option value="advertisement">Advertisement</option>
+                                    <option value="school-visit">School Visit</option>
+                                    <option value="drive-by">Driving by the school</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="form-label block">Additional Comments</label>
+                                <textarea id="additionalComments" name="additionalComments" rows="4" class="form-input w-full" placeholder="Any additional information you'd like to share about the student or your application"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Declaration -->
+                    <div class="alert alert-info mb-8">
+                        <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4 flex items-center">
+                            <i class="fas fa-info-circle mr-2"></i>
+                            Application Declaration
+                        </h3>
+                        <div class="space-y-3 text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                            <p>• I declare that all information provided in this application is true and complete to the best of my knowledge.</p>
+                            <p>• I understand that any false information may result in the rejection of this application or dismissal of the student.</p>
+                            <p>• I agree to abide by the school's rules, regulations, and policies as outlined in the school handbook.</p>
+                            <p>• I understand that the school reserves the right to make final decisions on all admissions.</p>
+                            <p>• I consent to the school contacting me via phone, email, or SMS regarding my child's education and school activities.</p>
+                            <p>• I understand that I must submit all required documents within 7 days of application submission.</p>
+                        </div>
+                    </div>
+
+                    <!-- Checkboxes -->
+                    <div class="space-y-4 mb-8">
+                        <label class="flex items-start space-x-4 p-4 border-2 border-gray-200 dark:border-gray-600 rounded-lg hover:border-indigo-300 dark:hover:border-indigo-500 transition-colors cursor-pointer">
+                            <input type="checkbox" id="agreeDeclaration" name="agreeDeclaration" class="checkbox-custom mt-1" required>
+                            <span class="text-gray-700 dark:text-gray-300 font-medium">I have read and agree to the above declaration *</span>
+                        </label>
+                        <label class="flex items-start space-x-4 p-4 border-2 border-gray-200 dark:border-gray-600 rounded-lg hover:border-indigo-300 dark:hover:border-indigo-500 transition-colors cursor-pointer">
+                            <input type="checkbox" id="agreeTerms" name="agreeTerms" class="checkbox-custom mt-1" required>
+                            <span class="text-gray-700 dark:text-gray-300 font-medium">I agree to the school's terms and conditions *</span>
+                        </label>
+                        <label class="flex items-start space-x-4 p-4 border-2 border-gray-200 dark:border-gray-600 rounded-lg hover:border-indigo-300 dark:hover:border-indigo-500 transition-colors cursor-pointer">
+                            <input type="checkbox" id="consentContact" name="consentContact" class="checkbox-custom mt-1" required>
+                            <span class="text-gray-700 dark:text-gray-300 font-medium">I consent to being contacted by the school *</span>
+                        </label>
+                        <label class="flex items-start space-x-4 p-4 border-2 border-gray-200 dark:border-gray-600 rounded-lg hover:border-indigo-300 dark:hover:border-indigo-500 transition-colors cursor-pointer">
+                            <input type="checkbox" id="documentsReady" name="documentsReady" class="checkbox-custom mt-1" required>
+                            <span class="text-gray-700 dark:text-gray-300 font-medium">I understand the required documents and will submit them within 7 days *</span>
+                        </label>
+                    </div>
+
+                    <div class="mt-12 flex justify-between">
+                        <button type="button" onclick="prevStep()" class="btn-secondary px-8 py-4 text-gray-700 dark:text-gray-200 rounded-full font-semibold">
+                            <i class="fas fa-arrow-left mr-3"></i> Previous
+                        </button>
+                        <button type="submit" id="submitBtn" class="btn-primary px-12 py-4 text-white rounded-full font-semibold text-lg">
+                            Submit Application <i class="fas fa-paper-plane ml-3"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 dark:bg-gray-800 text-white py-12 mt-16">
+        <div class="max-w-5xl mx-auto px-6 text-center">
+            <div class="mb-6">
+                <i class="fas fa-graduation-cap text-4xl mb-4 text-indigo-400"></i>
+                <h3 class="text-2xl font-bold mb-2">St. Thomas Junior School</h3>
+                <p class="text-gray-400 mb-4">Bamburi Kiembeni, Mombasa</p>
+            </div>
+            <div class="flex justify-center space-x-8 text-sm mb-6">
+                <div class="flex items-center">
+                    <i class="fas fa-phone mr-2 text-indigo-400"></i>
+                    <span>+254 740 833 092</span>
+                </div>
+                <div class="flex items-center">
+                    <i class="fas fa-envelope mr-2 text-indigo-400"></i>
+                    <span>admissions@stthomasjunior.ac.ke</span>
+                </div>
+            </div>
+            <p class="text-sm text-gray-500">© 2024 St. Thomas Junior School. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize EmailJS with your public key
+        (function() {
+            emailjs.init("aIrKQD48pYGejiGtL");
+        })();
+
+        // Dark Mode Toggle Functionality
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            const isDark = html.classList.contains('dark');
+            
+            if (isDark) {
+                html.classList.remove('dark');
+                localStorage.setItem('darkMode', 'false');
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('darkMode', 'true');
+            }
+        }
+
+        // Initialize dark mode based on user preference
+        function initializeDarkMode() {
+            const savedMode = localStorage.getItem('darkMode');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            if (savedMode === 'true' || (savedMode === null && prefersDark)) {
+                document.documentElement.classList.add('dark');
+            }
+        }
+
+        // Enhanced scroll handling for progress bar with direction detection
+        let lastScrollTop = 0;
+        let scrollThreshold = 50;
+        let scrollTimeout;
+        
+        window.addEventListener('scroll', function() {
+            const progressContainer = document.querySelector('.progress-container');
+            const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            // Clear previous timeout
+            clearTimeout(scrollTimeout);
+            
+            // Determine scroll direction
+            if (currentScrollTop > scrollThreshold) {
+                if (currentScrollTop > lastScrollTop) {
+                    // Scrolling down - hide progress bar
+                    progressContainer.classList.add('scroll-hide');
+                    progressContainer.classList.remove('scroll-show');
+                } else {
+                    // Scrolling up - show progress bar
+                    progressContainer.classList.remove('scroll-hide');
+                    progressContainer.classList.add('scroll-show');
+                }
+                
+                // Add scrolled shadow effect
+                progressContainer.classList.add('scrolled');
+            } else {
+                // At top of page - always show
+                progressContainer.classList.remove('scroll-hide', 'scroll-show', 'scrolled');
+            }
+            
+            // Update last scroll position
+            lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
+            
+            // Debounce to ensure smooth behavior
+            scrollTimeout = setTimeout(function() {
+                if (currentScrollTop <= scrollThreshold) {
+                    progressContainer.classList.remove('scroll-hide', 'scroll-show', 'scrolled');
+                }
+            }, 100);
+        });
+
+        // Animated number counter function
+        function animateNumber(element, start, end, duration = 800) {
+            const range = end - start;
+            const increment = range / (duration / 16);
+            let current = start;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= end) {
+                    current = end;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.round(current);
+                element.classList.add('number-animate');
+                
+                // Remove animation class after animation completes
+                setTimeout(() => {
+                    element.classList.remove('number-animate');
+                }, 500);
+            }, 16);
+        }
+
+        // Enhanced step indicator animation
+        function animateStepIndicators() {
+            const indicators = document.querySelectorAll('.step-indicator');
+            indicators.forEach((indicator, index) => {
+                setTimeout(() => {
+                    indicator.classList.add('animate-in');
+                }, index * 100);
+            });
+        }
+
+        // Function to get priority email based on parent status
+        function getPriorityEmail(formData) {
+            const parentStatus = formData.get('parentStatus');
+            
+            if (parentStatus === 'both') {
+                return formData.get('fatherEmail') || formData.get('motherEmail');
+            } else if (parentStatus === 'single') {
+                const singleParentType = formData.get('singleParentType');
+                if (singleParentType === 'father') {
+                    return formData.get('fatherEmail');
+                } else if (singleParentType === 'mother') {
+                    return formData.get('motherEmail');
+                }
+            } else if (parentStatus === 'guardian') {
+                return formData.get('guardianEmail');
+            }
+            
+            return null;
+        }
+
+        // Function to send both emails using correct template parameters
+        async function sendApplicationEmails(formData) {
+            try {
+                const parentStatus = formData.get('parentStatus');
+                const singleParentType = formData.get('singleParentType');
+                
+                // Determine primary parent/guardian info based on family structure
+                let primaryParentName, primaryParentPhone, primaryParentEmail;
+                
+                if (parentStatus === 'both') {
+                    primaryParentName = formData.get('fatherName') || formData.get('motherName');
+                    primaryParentPhone = formData.get('fatherPhone') || formData.get('motherPhone');
+                    primaryParentEmail = formData.get('fatherEmail') || formData.get('motherEmail');
+                } else if (parentStatus === 'single') {
+                    if (singleParentType === 'father') {
+                        primaryParentName = formData.get('fatherName');
+                        primaryParentPhone = formData.get('fatherPhone');
+                        primaryParentEmail = formData.get('fatherEmail');
+                    } else if (singleParentType === 'mother') {
+                        primaryParentName = formData.get('motherName');
+                        primaryParentPhone = formData.get('motherPhone');
+                        primaryParentEmail = formData.get('motherEmail');
+                    }
+                } else if (parentStatus === 'guardian') {
+                    primaryParentName = formData.get('guardianName');
+                    primaryParentPhone = formData.get('guardianPhone');
+                    primaryParentEmail = formData.get('guardianEmail');
+                }
+
+                // Template parameters matching your EmailJS templates exactly
+                const templateParams = {
+                    student_name: `${formData.get('firstName')} ${formData.get('middleName') || ''} ${formData.get('lastName')}`.trim(),
+                    date_of_birth: formData.get('dateOfBirth'),
+                    grade: formData.get('gradeApplying'),
+                    gender: formData.get('gender'),
+                    parent_name: primaryParentName || 'Not provided',
+                    parent_phone: primaryParentPhone || 'Not provided',
+                    parent_email: primaryParentEmail || 'Not provided',
+                    parent_address: `${formData.get('homeAddress')}, ${formData.get('city')}, ${formData.get('county')}`.replace(/,\s*,/g, ',').replace(/^,|,$/g, ''),
+                    previous_school: formData.get('previousSchool') || 'Not specified',
+                    application_date: new Date().toLocaleDateString('en-GB', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    }),
+                    medical_conditions: formData.get('medicalConditions') || 'None specified',
+                    special_requirements: formData.get('specialNeeds') || 'None specified',
+                    to_email: 'nzakagideon05@gmail.com'
+                };
+
+                console.log('Sending emails with corrected params:', templateParams);
+
+                // Send notification email to school
+                const schoolEmailResponse = await emailjs.send(
+                    "service_6qj8f1e",
+                    "template_2fd433s",
+                    templateParams
+                );
+
+                console.log('School notification email sent:', schoolEmailResponse);
+
+                // Send confirmation email to parent/guardian
+                if (primaryParentEmail) {
+                    const parentEmailResponse = await emailjs.send(
+                        "service_6qj8f1e",
+                        "template_z7qnonb",
+                        {
+                            ...templateParams,
+                            to_email: primaryParentEmail
+                        }
+                    );
+                    console.log('Parent confirmation email sent:', parentEmailResponse);
+                }
+
+                return { success: true, message: 'Application submitted successfully! Confirmation emails have been sent.' };
+
+            } catch (error) {
+                console.error('Email sending failed:', error);
+                return { success: false, message: 'Failed to send emails: ' + (error.text || error.message) };
+            }
+        }
+
+        // Enhanced form validation
+        function validateFormData(formData) {
+            const errors = [];
+            
+            // Basic student information validation
+            const requiredBasicFields = {
+                'firstName': 'First Name',
+                'lastName': 'Last Name',
+                'dateOfBirth': 'Date of Birth',
+                'gradeApplying': 'Grade Applying For',
+                'gender': 'Gender',
+                'nationality': 'Nationality'
+            };
+            
+            for (const [field, label] of Object.entries(requiredBasicFields)) {
+                if (!formData.get(field)) {
+                    errors.push(`${label} is required`);
+                }
+            }
+            
+            // Parent/Guardian validation based on status
+            const parentStatus = formData.get('parentStatus');
+            
+            if (parentStatus === 'both') {
+                const requiredParentFields = {
+                    'fatherName': 'Father\'s Name',
+                    'fatherPhone': 'Father\'s Phone',
+                    'motherName': 'Mother\'s Name',
+                    'motherPhone': 'Mother\'s Phone'
+                };
+                
+                for (const [field, label] of Object.entries(requiredParentFields)) {
+                    if (!formData.get(field)) {
+                        errors.push(`${label} is required`);
+                    }
+                }
+            } else if (parentStatus === 'single') {
+                const singleParentType = formData.get('singleParentType');
+                if (!singleParentType) {
+                    errors.push('Please specify which parent');
+                } else {
+                    const requiredFields = {
+                        [`${singleParentType}Name`]: `${singleParentType.charAt(0).toUpperCase() + singleParentType.slice(1)}'s Name`,
+                        [`${singleParentType}Phone`]: `${singleParentType.charAt(0).toUpperCase() + singleParentType.slice(1)}'s Phone`
+                    };
+                    
+                    for (const [field, label] of Object.entries(requiredFields)) {
+                        if (!formData.get(field)) {
+                            errors.push(`${label} is required`);
+                        }
+                    }
+                }
+            } else if (parentStatus === 'guardian') {
+                const requiredGuardianFields = {
+                    'guardianName': 'Guardian\'s Name',
+                    'guardianPhone': 'Guardian\'s Phone',
+                    'guardianRelationship': 'Guardian\'s Relationship'
+                };
+                
+                for (const [field, label] of Object.entries(requiredGuardianFields)) {
+                    if (!formData.get(field)) {
+                        errors.push(`${label} is required`);
+                    }
+                }
+            }
+            
+            // Address validation
+            const requiredAddressFields = {
+                'homeAddress': 'Home Address',
+                'city': 'City',
+                'county': 'County'
+            };
+            
+            for (const [field, label] of Object.entries(requiredAddressFields)) {
+                if (!formData.get(field)) {
+                    errors.push(`${label} is required`);
+                }
+            }
+            
+            // Emergency contact validation
+            const requiredEmergencyFields = {
+                'emergencyContactName': 'Emergency Contact Name',
+                'emergencyContactPhone': 'Emergency Contact Phone',
+                'emergencyRelationship': 'Emergency Contact Relationship'
+            };
+            
+            for (const [field, label] of Object.entries(requiredEmergencyFields)) {
+                if (!formData.get(field)) {
+                    errors.push(`${label} is required`);
+                }
+            }
+            
+            // Email validation
+            const priorityEmail = getPriorityEmail(formData);
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            
+            if (priorityEmail && !emailRegex.test(priorityEmail)) {
+                errors.push('Please enter a valid email address');
+            }
+            
+            // Phone validation (basic check for Kenyan format)
+            const phoneRegex = /^(\+254|254|0)?[71][0-9]{8}$/;
+            const phoneFields = ['fatherPhone', 'motherPhone', 'guardianPhone', 'emergencyContactPhone'];
+            
+            phoneFields.forEach(field => {
+                const phone = formData.get(field);
+                if (phone && !phoneRegex.test(phone.replace(/\s/g, ''))) {
+                    errors.push(`${field.replace(/([A-Z])/g, ' $1').toLowerCase()} must be a valid Kenyan phone number`);
+                }
+            });
+            
+            return errors;
+        }
+
+        // Enhanced form submission handler
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize dark mode
+            initializeDarkMode();
+            
+            // Initialize animations
+            animateStepIndicators();
+            
+            const form = document.getElementById('applicationForm');
+            if (form) {
+                form.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    
+                    const submitBtn = document.getElementById('submitBtn');
+                    const originalText = submitBtn.innerHTML;
+                    
+                    // Show loading state
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Submitting Application...';
+                    submitBtn.disabled = true;
+
+                    try {
+                        const formData = new FormData(this);
+                        
+                        // Validate form data
+                        const validationErrors = validateFormData(formData);
+                        
+                        if (validationErrors.length > 0) {
+                            throw new Error('Please correct the following errors:\n• ' + validationErrors.join('\n• '));
+                        }
+
+                        // Send emails
+                        const emailResult = await sendApplicationEmails(formData);
+                        
+                        if (emailResult.success) {
+                            showThankYouMessage();
+                        } else {
+                            throw new Error(emailResult.message);
+                        }
+
+                    } catch (error) {
+                        alert('Error: ' + error.message);
+                        console.error('Form submission error:', error);
+                    } finally {
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                    }
+                });
+            }
+            
+            // Date validation for date of birth
+            const dobInput = document.getElementById('dateOfBirth');
+            if (dobInput) {
+                const today = new Date().toISOString().split('T')[0];
+                dobInput.setAttribute('max', today);
+                
+                const minDate = new Date();
+                minDate.setFullYear(minDate.getFullYear() - 20);
+                dobInput.setAttribute('min', minDate.toISOString().split('T')[0]);
+            }
+        });
+
+        // Thank you message function
+        function showThankYouMessage() {
+            const formContainer = document.querySelector('.form-container');
+            if (formContainer) {
+                const thankYouHTML = `
+                    <div class="text-center py-16 slide-up">
+                        <div class="mb-8">
+                            <div class="w-24 h-24 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <i class="fas fa-check text-green-600 dark:text-green-400 text-4xl"></i>
+                            </div>
+                            <h2 class="text-4xl font-bold text-gray-800 dark:text-gray-200 mb-4">Application Submitted Successfully!</h2>
+                            <p class="text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
+                                Thank you for your interest in St. Thomas Junior School. We have received your application
+                                and will review it carefully.
+                            </p>
+                        </div>
+                        
+                        <div class="alert alert-success max-w-2xl mx-auto mb-8">
+                            <h3 class="font-semibold text-lg mb-4">What happens next?</h3>
+                            <div class="space-y-2 text-left">
+                                <p>✓ You will receive a confirmation email shortly</p>
+                                <p>✓ Our admissions team will review your application</p>
+                                <p>✓ We will contact you within 3-5 business days</p>
+                                <p>✓ If selected, we will schedule an interview</p>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-8">
+                            <h4 class="font-semibold text-lg mb-4 text-gray-800 dark:text-gray-200">Questions? Contact us:</h4>
+                            <div class="flex justify-center space-x-8">
+                                <div class="flex items-center">
+                                    <i class="fas fa-phone text-indigo-600 dark:text-indigo-400 mr-2"></i>
+                                    <span class="text-gray-700 dark:text-gray-300">+254 740 833 092</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-envelope text-indigo-600 dark:text-indigo-400 mr-2"></i>
+                                    <span class="text-gray-700 dark:text-gray-300">admissions@stthomasjunior.ac.ke</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button onclick="location.reload()" class="btn-primary px-8 py-4 text-white rounded-full font-semibold">
+                            Submit Another Application
+                        </button>
+                    </div>
+                `;
+                
+                formContainer.innerHTML = thankYouHTML;
+            }
+        }
+
+        // Multi-step form navigation
+        let currentStep = 1;
+        const totalSteps = 9;
+
+        function updateProgress() {
+            const progress = (currentStep / totalSteps) * 100;
+            const progressBar = document.querySelector('.progress-bar');
+            const currentStepElement = document.getElementById('current-step');
+            const progressPercentage = document.getElementById('progress-percentage');
+            
+            // Animate progress bar
+            progressBar.style.setProperty('--progress', progress + '%');
+            
+            // Animate step number
+            currentStepElement.textContent = currentStep;
+            currentStepElement.classList.add('number-animate');
+            
+            // Animate percentage with number counter
+            const oldPercentage = parseInt(progressPercentage.textContent);
+            const newPercentage = Math.round(progress);
+            animateNumber(progressPercentage, oldPercentage, newPercentage, 600);
+            
+            // Update step indicators with enhanced animations
+            const indicators = document.querySelectorAll('.step-indicator');
+            indicators.forEach((indicator, index) => {
+                indicator.classList.remove('active', 'completed');
+                
+                if (index + 1 < currentStep) {
+                    setTimeout(() => {
+                        indicator.classList.add('completed');
+                    }, index * 50);
+                } else if (index + 1 === currentStep) {
+                    setTimeout(() => {
+                        indicator.classList.add('active');
+                    }, index * 50);
+                }
+            });
+            
+            // Remove number animation class
+            setTimeout(() => {
+                currentStepElement.classList.remove('number-animate');
+            }, 500);
+        }
+
+        function showStep(step) {
+            // Add slide-up animation to new step
+            document.querySelectorAll('.form-step').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            const newStep = document.getElementById(`step-${step}`);
+            newStep.classList.add('active', 'slide-up');
+            
+            // Remove slide-up class after animation
+            setTimeout(() => {
+                newStep.classList.remove('slide-up');
+            }, 500);
+            
+            updateProgress();
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function nextStep() {
+            if (validateCurrentStep()) {
+                const parentStatus = document.querySelector('input[name="parentStatus"]:checked')?.value;
+                
+                if (currentStep === 3) {
+                    if (parentStatus === 'both') {
+                        currentStep = 4;
+                    } else if (parentStatus === 'single') {
+                        const singleParentType = document.querySelector('input[name="singleParentType"]:checked')?.value;
+                        if (singleParentType === 'father') {
+                            currentStep = 4;
+                        } else if (singleParentType === 'mother') {
+                            currentStep = 5;
+                        }
+                    } else if (parentStatus === 'guardian') {
+                        currentStep = 6;
+                    }
+                } else if (currentStep === 4) {
+                    if (parentStatus === 'both') {
+                        currentStep = 5;
+                    } else if (parentStatus === 'single') {
+                        currentStep = 7;
+                    }
+                } else if (currentStep === 5) {
+                    currentStep = 7;
+                } else if (currentStep === 6) {
+                    currentStep = 7;
+                } else {
+                    currentStep++;
+                }
+                
+                showStep(currentStep);
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 1) {
+                const parentStatus = document.querySelector('input[name="parentStatus"]:checked')?.value;
+                
+                if (currentStep === 7) {
+                    if (parentStatus === 'both') {
+                        currentStep = 5;
+                    } else if (parentStatus === 'single') {
+                        const singleParentType = document.querySelector('input[name="singleParentType"]:checked')?.value;
+                        if (singleParentType === 'father') {
+                            currentStep = 4;
+                        } else if (singleParentType === 'mother') {
+                            currentStep = 5;
+                        }
+                    } else if (parentStatus === 'guardian') {
+                        currentStep = 6;
+                    }
+                } else if (currentStep === 5) {
+                    currentStep = 4;
+                } else if (currentStep === 4 || currentStep === 6) {
+                    currentStep = 3;
+                } else {
+                    currentStep--;
+                }
+                
+                showStep(currentStep);
+            }
+        }
+
+        function validateCurrentStep() {
+            const currentStepElement = document.getElementById(`step-${currentStep}`);
+            const requiredFields = currentStepElement.querySelectorAll('[required]');
+            
+            for (let field of requiredFields) {
+                if (field.type === 'checkbox' && !field.checked) {
+                    field.focus();
+                    alert('Please accept all required terms and conditions.');
+                    return false;
+                } else if (field.type !== 'checkbox' && !field.value.trim()) {
+                    field.focus();
+                    alert('Please fill in all required fields.');
+                    return false;
+                }
+            }
+            
+            if (currentStep === 3) {
+                const parentStatus = document.querySelector('input[name="parentStatus"]:checked');
+                if (!parentStatus) {
+                    alert('Please select a family status.');
+                    return false;
+                }
+                
+                if (parentStatus.value === 'single') {
+                    const singleParentType = document.querySelector('input[name="singleParentType"]:checked');
+                    if (!singleParentType) {
+                        alert('Please select which parent.');
+                        return false;
+                    }
+                }
+            }
+            
+            return true;
+        }
+
+        function handleFamilyStatusChange() {
+            const parentStatus = document.querySelector('input[name="parentStatus"]:checked');
+            const singleParentSelection = document.getElementById('single-parent-selection');
+            
+            // Update radio card selections with animation
+            document.querySelectorAll('.radio-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            if (parentStatus) {
+                parentStatus.closest('.radio-card').classList.add('selected');
+            }
+            
+            singleParentSelection.classList.add('hidden');
+            
+            if (parentStatus && parentStatus.value === 'single') {
+                singleParentSelection.classList.remove('hidden');
+                singleParentSelection.classList.add('slide-up');
+                
+                setTimeout(() => {
+                    singleParentSelection.classList.remove('slide-up');
+                }, 500);
+            }
+        }
+
+        function selectRadio(value) {
+            const radio = document.querySelector(`input[name="parentStatus"][value="${value}"]`);
+            if (radio) {
+                radio.checked = true;
+                handleFamilyStatusChange();
+            }
+        }
+
+        function goToHomepage() {
+            if (confirm('Are you sure you want to return to the homepage? Any unsaved progress will be lost.')) {
+                window.location.href = 'index.html';
+            }
+        }
+
+        // Initialize form
+        document.addEventListener('DOMContentLoaded', function() {
+            showStep(1);
+        });
+    </script>
+</body>
+</html>
